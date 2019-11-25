@@ -6,20 +6,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Sprint {
+public class Lista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nombre;
 	
-	@OneToMany(mappedBy = "sprint")
-	@JsonIgnore
-	private List<Lista> listas;
+	@ManyToOne()
+	private Sprint sprint;
+	
+	@OneToMany(mappedBy = "lista")
+	private List<Tarea> tareas;	
+	
+	public static String BACKLOG= "backlog";
+	public static String TODO= "to_do";
+	public static String INPROGRESS= "in_progress";
+	public static String WATING= "waiting";
+	public static String DONE= "done";
 	
 	public Integer getId() {
 		return id;
@@ -33,16 +43,22 @@ public class Sprint {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public Sprint getSprint() {
+		return sprint;
+	}
+	public void setSprint(Sprint sprint) {
+		this.sprint = sprint;
+	}
+	public List<Tarea> getTareas() {
+		return tareas;
+	}
+	public void setTareas(List<Tarea> tareas) {
+		this.tareas = tareas;
+	}
 	
 	@JsonIgnore
 	public String getJSON() {
-		//return new Gson().toJson(this,Sprint.class);
+		//return new Gson().toJson(this,Lista.class);
 		return "";
 	}
-	public List<Lista> getListas() {
-		return listas;
-	}
-	public void setListas(List<Lista> listas) {
-		this.listas = listas;
-	}	
 }

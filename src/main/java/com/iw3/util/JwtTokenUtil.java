@@ -16,8 +16,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtTokenUtil implements Serializable {
 	private static final long serialVersionUID = -2550185165626007488L;
 	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+	
+	private final String CLAIM_VERSION="version";
+	
 	@Value("${jwt.secret}")
 	private String secret;
+	
+	@Value("${jwt.token.version}")
+	private Double VERSION;
 	
 	/**
 	 * Devuelve el nombre de usuario a partir del token
@@ -41,7 +47,6 @@ public class JwtTokenUtil implements Serializable {
 		return claimsResolver.apply(claims);
 	}
 	
-    //for retrieveing any information from token we will need the secret key
 	private Claims getAllClaimsFromToken(String token) {
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 	}
@@ -61,7 +66,28 @@ public class JwtTokenUtil implements Serializable {
 	 */
 	public String generateToken(String username) {
 		Map<String, Object> claims = new HashMap<>();
+		claims.put(CLAIM_VERSION, VERSION);		
 		return doGenerateToken(claims, username);
+	}
+
+	/**
+	 * Devuelve la version del token.
+	 * @param token Es el token del cual se extraera la version.
+	 * @return La verion del token.
+	 */
+	public Double getVersion(String token) {
+		return (Double)getAllClaimsFromToken(token).get(CLAIM_VERSION);
+	}
+	
+	/**
+	 * Comprueba que el token tenga una version valida.
+	 * @param token Es el token del cual se extraera la version.
+	 * @return La verion del token.
+	 */
+	public boolean isValidVersion(String token) {
+		int actualVersion = VERSION.intValue();
+		int tokenVerion = getVersion(token).intValue();
+		return actualVersion == tokenVerion;
 	}
 	
 	private String doGenerateToken(Map<String, Object> claims, String subject) {

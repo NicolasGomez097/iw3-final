@@ -44,7 +44,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		
 		String username = null;
-		String jwtToken = request.getHeader(AUTH_JWT_HEADER);
+		String jwtToken = request.getHeader(AUTH_JWT_HEADER);		
 		
 		if(jwtToken == null)
 			jwtToken = request.getParameter(AUTH_JWT_PARAMETER);
@@ -52,11 +52,21 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 					
 		if (jwtToken != null) {
 			try {
+				if(!jwtTokenUtil.isValidVersion(jwtToken)) {
+					log.error("El token JWT es de una version antigua.");
+					chain.doFilter(request, response);
+					return;
+				}					
+				
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 			} catch (IllegalArgumentException e) {
 				log.error("No se pudo obtener el token.");
+				chain.doFilter(request, response);
+				return;
 			} catch (ExpiredJwtException e) {
 				log.error("El token JWT expiro");
+				chain.doFilter(request, response);
+				return;
 			}
 		} 
 		

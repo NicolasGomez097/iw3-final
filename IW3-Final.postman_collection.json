@@ -15,7 +15,7 @@
 						"header": [
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDgxNjA5MywidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ3OTgwOTN9.cUAyVRGG3fQaRPUgBnlTIbpNuOrtjwDHPnlKo5BC_Bi006gw1qB5cxLD8crwTubjUdOSuV67kcSTRShXqJJLNw",
 								"type": "text"
 							}
 						],

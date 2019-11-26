@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -19,9 +20,10 @@ public class Tarea {
 	private Date fecha_creacion;
 	private Date ultima_modificacion;
 	private String prioridad;
+	private Double estimacion;
 	
 	@ManyToOne()
-	@JsonIgnore
+	@JsonBackReference
 	private Lista lista;
 
 	public Integer getId() {
@@ -71,7 +73,15 @@ public class Tarea {
 	public void setLista(Lista lista) {
 		this.lista = lista;
 	}	
-	
+		
+	public Double getEstimacion() {
+		return estimacion;
+	}
+
+	public void setEstimacion(Double estimacion) {
+		this.estimacion = estimacion;
+	}
+
 	@JsonIgnore
 	public String getJSON() {
 		//return new Gson().toJson(this,Tarea.class);

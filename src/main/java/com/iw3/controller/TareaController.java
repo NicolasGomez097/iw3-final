@@ -30,6 +30,8 @@ public class TareaController implements ITareaController{
 			return false;
 		if(tarea.getLista() == null)
 			return false;
+		if(tarea.getEstimacion() == null)
+			return false;
 		return true;
 	}
 

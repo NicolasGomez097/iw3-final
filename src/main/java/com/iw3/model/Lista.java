@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Lista {
@@ -23,6 +24,7 @@ public class Lista {
 	private Sprint sprint;
 	
 	@OneToMany(mappedBy = "lista")
+	@JsonManagedReference
 	private List<Tarea> tareas;	
 	
 	public static String BACKLOG= "backlog";

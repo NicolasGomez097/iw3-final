@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iw3.controller.ISprintController;
+import com.iw3.business.ISprintController;
 import com.iw3.exeptions.BusinessException;
+import com.iw3.exeptions.SprintException;
 import com.iw3.model.Sprint;
 import com.iw3.util.Constantes;
 
@@ -24,8 +25,12 @@ public class SprintRestController {
 	
 	@PostMapping("")
 	public ResponseEntity<String> crearSpring(@RequestBody Sprint sprint){
-		if(!sprintController.esValido(sprint))
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		try{
+			sprintController.esValido(sprint);
+		}catch (SprintException e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+			
 		
 		try {
 			sprintController.crearSprint(sprint);

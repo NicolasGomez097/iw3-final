@@ -17,10 +17,17 @@ public class Tarea {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
-	private Date fecha_creacion;
-	private Date ultima_modificacion;
+	private Date fechaCreacion;
+	private Date ultimaModificacion;
 	private String prioridad;
 	private Double estimacion;
+	
+	public final static String PRIORIDAD_BAJA="Baja";
+	public final static String PRIORIDAD_MEDIA="Media";
+	public final static String PRIORIDAD_ALTA="Alta";
+	
+	@JsonIgnore
+	private Integer prioridadNum;
 	
 	@ManyToOne()
 	@JsonBackReference
@@ -41,21 +48,31 @@ public class Tarea {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	
 
-	public Date getFecha_creacion() {
-		return fecha_creacion;
+	public Date getFechaCreacion() {
+		return fechaCreacion;
 	}
 
-	public void setFecha_creacion(Date fecha_creacion) {
-		this.fecha_creacion = fecha_creacion;
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Date getUltima_modificacion() {
-		return ultima_modificacion;
+	public Date getUltimaModificacion() {
+		return ultimaModificacion;
 	}
 
-	public void setUltima_modificacion(Date ultima_modificacion) {
-		this.ultima_modificacion = ultima_modificacion;
+	public void setUltimaModificacion(Date ultimaModificacion) {
+		this.ultimaModificacion = ultimaModificacion;
+	}
+
+	public Integer getPrioridadNum() {
+		return prioridadNum;
+	}
+
+	public void setPrioridadNum(Integer prioridadNum) {
+		this.prioridadNum = prioridadNum;
 	}
 
 	public String getPrioridad() {
@@ -64,6 +81,17 @@ public class Tarea {
 
 	public void setPrioridad(String prioridad) {
 		this.prioridad = prioridad;
+		switch (prioridad) {
+		case PRIORIDAD_BAJA:
+			this.prioridadNum = 1;
+			break;
+		case PRIORIDAD_MEDIA:
+			this.prioridadNum = 2;	
+			break;
+		case PRIORIDAD_ALTA:
+			this.prioridadNum = 3;
+			break;
+		}
 	}
 
 	public Lista getLista() {

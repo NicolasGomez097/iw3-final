@@ -7,14 +7,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iw3.controller.IListaController;
-import com.iw3.controller.ITareaController;
+import com.iw3.business.IListaController;
+import com.iw3.business.ITareaController;
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.NotFoundException;
+import com.iw3.exeptions.TareaException;
 import com.iw3.model.Lista;
 import com.iw3.model.Tarea;
 import com.iw3.util.Constantes;
@@ -54,8 +56,11 @@ public class TareaRestController {
 	
 	@PostMapping("")
 	public ResponseEntity<String> crearTarea(@RequestBody Tarea tarea){
-		if(!tareaController.esValido(tarea))
-			return new ResponseEntity<String>("La tarea no es valida",HttpStatus.BAD_REQUEST);		
+		try{
+			tareaController.esValido(tarea);
+		}catch (TareaException e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);	
+		}
 		
 		try {
 			Lista lista = listaController.getLista(tarea.getLista().getId());
@@ -64,6 +69,29 @@ public class TareaRestController {
 			
 			tareaController.crearTarea(tarea);
 			return new ResponseEntity<String>(HttpStatus.CREATED);
+		}catch (BusinessException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}catch (NotFoundException e) {
+			return new ResponseEntity<String>("No existe la lista",HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PutMapping("")
+	public ResponseEntity<String> modificarTarea(@RequestBody Tarea tarea){
+		try{
+			tareaController.esValido(tarea);
+		}catch (TareaException e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);	
+		}	
+		
+		try {
+			Lista lista = listaController.getLista(tarea.getLista().getId());
+			if(!lista.getNombre().equals(Lista.BACKLOG))
+				return new ResponseEntity<String>("Solo se puede modificar la tarea en el backlog",HttpStatus.BAD_REQUEST);
+			
+			tareaController.updateTarea(tarea);
+			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (BusinessException e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);

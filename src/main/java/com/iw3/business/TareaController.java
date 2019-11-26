@@ -1,4 +1,4 @@
-package com.iw3.controller;
+package com.iw3.business;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.NotFoundException;
+import com.iw3.exeptions.TareaException;
 import com.iw3.model.Tarea;
 import com.iw3.repository.TareaRepository;
 
@@ -23,16 +24,23 @@ public class TareaController implements ITareaController{
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Override
-	public boolean esValido(Tarea tarea) {
+	public void esValido(Tarea tarea) throws TareaException{
 		if(tarea.getNombre() == null)
-			return false;
+			throw new TareaException("No tiene el campo nombre");
 		if(tarea.getPrioridad() == null)
-			return false;
+			throw new TareaException("No tiene el campo prioridad");
 		if(tarea.getLista() == null)
-			return false;
-		if(tarea.getEstimacion() == null)
-			return false;
-		return true;
+			throw new TareaException("No tiene una lista asignada");
+		if(!tarea.getPrioridad().equals(Tarea.PRIORIDAD_BAJA)&&
+				!tarea.getPrioridad().equals(Tarea.PRIORIDAD_MEDIA)&&
+				!tarea.getPrioridad().equals(Tarea.PRIORIDAD_ALTA))
+			throw new TareaException("La prioridad no es valida ("+
+				Tarea.PRIORIDAD_BAJA+","+
+				Tarea.PRIORIDAD_MEDIA+","+
+				Tarea.PRIORIDAD_ALTA+")");
+		
+		if(tarea.getNombre().length() < 4)
+			throw new TareaException("El nombre debe contener almenos 4 letras");
 	}
 
 	@Override
@@ -48,10 +56,22 @@ public class TareaController implements ITareaController{
 	@Override
 	public void crearTarea(Tarea tarea) throws BusinessException {
 		try {			
-			tarea.setFecha_creacion(new Date());
-			tarea.setUltima_modificacion(new Date());
+			tarea.setFechaCreacion(new Date());
+			tarea.setUltimaModificacion(new Date());
 			repo.save(tarea);
 			log.info("Se creo la tarea "+tarea.getJSON());
+		}catch (Exception e) {
+			log.error(e.getMessage());
+			throw new BusinessException(e);
+		}		
+	}
+	
+	@Override
+	public void updateTarea(Tarea tarea) throws BusinessException {
+		try {			
+			tarea.setUltimaModificacion(new Date());
+			repo.save(tarea);
+			log.info("Se actualizo la tarea "+tarea.getJSON());
 		}catch (Exception e) {
 			log.error(e.getMessage());
 			throw new BusinessException(e);

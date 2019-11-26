@@ -12,4 +12,5 @@ import com.iw3.model.Lista;
 public interface ListaRepository extends JpaRepository<Lista, Integer>{
 	public Optional<Lista> findBySprintIdAndNombre(Integer idSprint,String nombre);
 	public Optional<List<Lista>> findBySprintId(Integer idSprint);
+	
 }

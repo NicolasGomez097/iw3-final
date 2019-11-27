@@ -1,0 +1,31 @@
+
+<div class="modal-header">
+	<h3 class="modal-title">{{proyFormTitulo}} Proyecto</h3>
+</div>
+<form class="form-horizontal">
+	<fieldset>
+		<div class="modal-body">
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">Proyecto</label>
+				<div class="col-md-8">
+					<input type="text" class="form-control" placeholder="Proyecto" ng-model="proy.descripcion"
+						required autofocus>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">Equipo</label>
+				<div class="col-md-8">
+					<input type="number" class="form-control" placeholder="Equipo"
+						ng-model="proy.Equipo" min="0" required>
+				</div>
+			</div>
+		</div>
+		
+	</fieldset>
+</form>
+<div class="modal-footer">
+	<button class="btn btn-danger" type="submit" ng-click=closeModal()>Cancelar</button>
+	<button class="btn btn-success" type="submit" ng-click=success()>{{SuccessBtnText}}</button>
+</div>

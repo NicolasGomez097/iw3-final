@@ -1,0 +1,51 @@
+<h2>{{titulo}}</h2>
+<hr />
+<div ng-show="autenticado">
+	<button class="btn btn-primary" ng-click="refresh()">Actualizar</button>
+	<button class="btn btn-success" ng-click="openInsertForm()">Insertar</button>
+	<hr />
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="busqueda.text" placeholder="Buscar....">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">
+						<i class="glyphicon glyphicon-search"></i>
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<hr/>
+	<div class="row">
+		<div class="col-lg-6">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre HU</th>
+						<th>Estimación</th>
+						<th>Valor</th>
+						<th>Descripcion</th>
+						<th>Tareas</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="h in data track by $index">
+						<td>{{h.id}}</td>
+						<td>{{h.nombre}}</td>
+						<td>{{h.estimacion}}</td>
+						<td>{{h.valor}}</td>
+						<td>{{h.descripcion}}</td>
+						<td>{{h.tareas.nombre}}</td>
+						<td>
+						<button ng-click="openEditHistory(h)" class="btn btn-info ">Editar</button>
+						<button ng-click="eliminar(h)" class="btn btn-warning glyphicon glyphicon-remove"></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div ng-show="!autenticado">Debe autenticarse!</div>

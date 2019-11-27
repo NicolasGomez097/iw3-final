@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iw3.business.IListaController;
-import com.iw3.exeptions.AlreadyExistsException;
+import com.iw3.business.IListaBusiness;
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.ListaException;
 import com.iw3.exeptions.NotFoundException;
@@ -28,25 +27,20 @@ import com.iw3.util.Constantes;
 public class ListaRestController {
 		
 	@Autowired
-	private IListaController listaController;
+	private IListaBusiness listaBusiness;
 	
 	@PostMapping("")
 	public ResponseEntity<String> crearLista(@RequestBody Lista lista){
-		try{
-			listaController.esValido(lista);
-		}catch (ListaException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
-		}
-			
 		try {
-			listaController.crearLista(lista);
+			listaBusiness.esValido(lista);
+			listaBusiness.crearLista(lista);
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.set("location", Constantes.URL_TAREA + "/" + lista.getNombre());
 			return new ResponseEntity<String>(responseHeaders,HttpStatus.CREATED);
 		}catch (BusinessException e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}catch (AlreadyExistsException e) {
+		}catch (ListaException e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
@@ -58,7 +52,7 @@ public class ListaRestController {
 			if(idSprint == null)
 				return new ResponseEntity<List<Lista>>(HttpStatus.BAD_REQUEST);
 			
-			return new ResponseEntity<List<Lista>>(listaController.getListas(idSprint),HttpStatus.OK);
+			return new ResponseEntity<List<Lista>>(listaBusiness.getListas(idSprint),HttpStatus.OK);
 		}catch (BusinessException e) {
 			return new ResponseEntity<List<Lista>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (NotFoundException e) {
@@ -73,7 +67,7 @@ public class ListaRestController {
 			if(idLista == null)
 				return new ResponseEntity<Lista>(HttpStatus.BAD_REQUEST);
 			
-			return new ResponseEntity<Lista>(listaController.getLista(idLista),HttpStatus.OK);
+			return new ResponseEntity<Lista>(listaBusiness.getLista(idLista),HttpStatus.OK);
 		}catch (BusinessException e) {
 			return new ResponseEntity<Lista>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (NotFoundException e) {
@@ -84,22 +78,19 @@ public class ListaRestController {
 	@GetMapping("/{lista}")
 	public ResponseEntity<List<Tarea>> getListEspesifica(@PathVariable String lista,@RequestParam("id_sprint")Integer idSprint){
 		try {
-			try{
-				listaController.esValidoTipo(lista);
-			}catch (ListaException e) {
-				HttpHeaders responseHeaders = new HttpHeaders();
-				responseHeaders.set("error",e.getMessage());
-				return new ResponseEntity<List<Tarea>>(responseHeaders,HttpStatus.BAD_REQUEST);
-			}
-			
 			if(idSprint == null)
 				return new ResponseEntity<List<Tarea>>(HttpStatus.BAD_REQUEST);
 			
-			return new ResponseEntity<List<Tarea>>(listaController.getListaEspesifica(idSprint,lista),HttpStatus.OK);
+			listaBusiness.esValidoTipo(lista);			
+			return new ResponseEntity<List<Tarea>>(listaBusiness.getListaEspesifica(idSprint,lista),HttpStatus.OK);
 		}catch (BusinessException e) {
 			return new ResponseEntity<List<Tarea>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (NotFoundException e) {
 			return new ResponseEntity<List<Tarea>>(HttpStatus.NOT_FOUND);
+		}catch (ListaException e) {
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error",e.getMessage());
+			return new ResponseEntity<List<Tarea>>(responseHeaders,HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -108,18 +99,11 @@ public class ListaRestController {
 			@PathVariable("lista") String lista,@RequestParam("id_sprint")Integer idSprint,
 			@PathVariable("campo") String campo,@PathVariable("tipo") String tipo){
 		try {
-			try{
-				listaController.esValidoTipo(lista);
-			}catch (ListaException e) {
-				HttpHeaders responseHeaders = new HttpHeaders();
-				responseHeaders.set("error",e.getMessage());
-				return new ResponseEntity<List<Tarea>>(responseHeaders,HttpStatus.BAD_REQUEST);
-			}
-			
 			if(idSprint == null)
 				return new ResponseEntity<List<Tarea>>(HttpStatus.BAD_REQUEST);
 			
-			return new ResponseEntity<List<Tarea>>(listaController.getListaEspesificaOrder(
+			listaBusiness.esValidoTipo(lista);			
+			return new ResponseEntity<List<Tarea>>(listaBusiness.getListaEspesificaOrder(
 					idSprint, lista, campo, tipo),HttpStatus.OK);
 		}catch (BusinessException e) {
 			return new ResponseEntity<List<Tarea>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -135,7 +119,7 @@ public class ListaRestController {
 	@PutMapping("/move_todo/{id}")
 	public ResponseEntity<String> moveToDo(@PathVariable("id")Integer idTarea){
 		try {
-			listaController.moveToDo(idTarea);
+			listaBusiness.moveToDo(idTarea);
 				
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
@@ -151,7 +135,7 @@ public class ListaRestController {
 	@PutMapping("/move_in_progress/{id}")
 	public ResponseEntity<String> moveInProgress(@PathVariable("id")Integer idTarea){
 		try {
-			listaController.moveInProgress(idTarea);
+			listaBusiness.moveInProgress(idTarea);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
@@ -166,7 +150,7 @@ public class ListaRestController {
 	@PutMapping("/move_waiting/{id}")
 	public ResponseEntity<String> moveWaitin(@PathVariable("id")Integer idTarea){
 		try {
-			listaController.moveWaiting(idTarea);
+			listaBusiness.moveWaiting(idTarea);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
@@ -181,7 +165,7 @@ public class ListaRestController {
 	@PutMapping("/move_done/{id}")
 	public ResponseEntity<String> moveDone(@PathVariable("id")Integer idTarea){
 		try {
-			listaController.moveDone(idTarea);
+			listaBusiness.moveDone(idTarea);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);

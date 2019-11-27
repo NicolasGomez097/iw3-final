@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iw3.exeptions.AlreadyExistsException;
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.ListaException;
 import com.iw3.exeptions.NotFoundException;
@@ -19,16 +18,20 @@ import com.iw3.model.Lista;
 import com.iw3.model.Sprint;
 import com.iw3.model.Tarea;
 import com.iw3.repository.ListaRepository;
+import com.iw3.repository.SprintRepository;
 import com.iw3.repository.TareaRepository;
 
 @Service
-public class ListaController implements IListaController{
+public class ListaBusiness implements IListaBusiness{
 	
 	@Autowired
 	private ListaRepository repo;
 	
 	@Autowired
 	private TareaRepository repoTareas;
+	
+	@Autowired
+	private SprintRepository repoSprints;
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -78,11 +81,13 @@ public class ListaController implements IListaController{
 
 	@Override
 	public void esValidoTipo(String lista)throws ListaException {
-		if(lista.equals(Lista.BACKLOG) ||
+		if(
+				lista.equals(Lista.BACKLOG) ||
 				lista.equals(Lista.TODO) || 
 				lista.equals(Lista.INPROGRESS) || 
 				lista.equals(Lista.WATING) ||
-				lista.equals(Lista.DONE))
+				lista.equals(Lista.DONE)
+			)
 			return;
 		
 		throw new ListaException("El nombre solo puede ser: "+
@@ -106,11 +111,15 @@ public class ListaController implements IListaController{
 	
 
 	@Override
-	public void crearLista(Lista lista) throws BusinessException,AlreadyExistsException{
+	public void crearLista(Lista lista) throws BusinessException,ListaException{
+		Optional<Sprint> sprint = repoSprints.findById(lista.getSprint().getId());
+		if(!sprint.isPresent())
+			throw new ListaException("No existe el sprint.");
+		
 		if(repo.findBySprintIdAndNombre(					
 				lista.getSprint().getId(), lista.getNombre()
 				).isPresent())
-			throw new AlreadyExistsException("Ya existe esta lista");
+			throw new ListaException("Ya existe esta lista");
 		
 		try {			
 			repo.save(lista);
@@ -238,14 +247,13 @@ public class ListaController implements IListaController{
 		}	
 	}
 	
-	private List<Tarea> removerTarea(List<Tarea> tareas, Integer idTarea){
+	private void removerTarea(List<Tarea> tareas, Integer idTarea){
 		for(Tarea t:tareas) {
 			if(t.getId() == idTarea) {
 				tareas.remove(t);
 				break;
 			}
 		}
-		return tareas;
 	}
 	
 	private void moverTarea(Lista deLista,String aLista,Tarea tarea,Sprint sprint) throws Exception{
@@ -336,7 +344,6 @@ public class ListaController implements IListaController{
 			log.error(e.getMessage());
 			throw new BusinessException(e);
 		}
-		
 		
 		return op.get().getTareas();
 	}

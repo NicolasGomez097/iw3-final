@@ -6,30 +6,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(
-	    uniqueConstraints=
-	        @UniqueConstraint(columnNames={"proyecto_id", "nombre"})
-	)
-public class Sprint {
+public class Proyecto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
 	
-	@ManyToOne
-	private Proyecto proyecto;
-	
-	@OneToMany(mappedBy = "sprint")
+	@OneToMany(mappedBy = "proyecto")
 	@JsonIgnore
-	private List<Lista> listas;
+	private List<Sprint> proyectos;
 	
 	public Integer getId() {
 		return id;
@@ -49,16 +39,11 @@ public class Sprint {
 		//return new Gson().toJson(this,Sprint.class);
 		return "";
 	}
-	public List<Lista> getListas() {
-		return listas;
+	
+	public List<Sprint> getProyectos() {
+		return proyectos;
 	}
-	public void setListas(List<Lista> listas) {
-		this.listas = listas;
+	public void setProyectos(List<Sprint> proyectos) {
+		this.proyectos = proyectos;
 	}
-	public Proyecto getProyecto() {
-		return proyecto;
-	}
-	public void setProyecto(Proyecto proyecto) {
-		this.proyecto = proyecto;
-	}	
 }

@@ -6,6 +6,79 @@
 	},
 	"item": [
 		{
+			"name": "Proyecto",
+			"item": [
+				{
+					"name": "Obtener Proyectos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/proyectos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"proyectos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Proyecto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "JWT-HEADER",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"Proyecto 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/proyectos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"proyectos"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Sprint",
 			"item": [
 				{
@@ -15,7 +88,7 @@
 						"header": [
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDgxNjA5MywidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ3OTgwOTN9.cUAyVRGG3fQaRPUgBnlTIbpNuOrtjwDHPnlKo5BC_Bi006gw1qB5cxLD8crwTubjUdOSuV67kcSTRShXqJJLNw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
@@ -53,13 +126,13 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"sprint 1\"\n}",
+							"raw": "{\n\t\"nombre\":\"sprint 1\",\n\t\"proyecto\":{\"id\":1}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,7 +170,7 @@
 								"header": [
 									{
 										"key": "JWT-HEADER",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 										"type": "text"
 									}
 								],
@@ -134,7 +207,7 @@
 								"header": [
 									{
 										"key": "JWT-HEADER",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 										"type": "text"
 									}
 								],
@@ -353,7 +426,7 @@
 									},
 									{
 										"key": "JWT-HEADER",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 										"type": "text"
 									}
 								],
@@ -594,13 +667,13 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"baja\",\n\t\"lista\":{\"id\":1}\n}",
+							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -635,13 +708,13 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":1,\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"Baja\",\n\t\"fechaCreacion\":\"2019-11-26T15:12:01.836+0000\",\n\t\"lista\":{\"id\":1},\n\t\"estimacion\": 2.0\n}",
+							"raw": "{\n\t\"id\":1,\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1},\n\t\"estimacion\": 3.0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -682,19 +755,10 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"fecha_creacion\":\"2019-11-25 20:05\",\n\t\"ultima_modificacion\":\"2019-11-25 20:05\",\n\t\"prioridad\":\"media\",\n\t\"lista\":{\"id\":1}\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:8080/api/v1/listas/move_todo/1",
 							"host": [
@@ -725,19 +789,10 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"fecha_creacion\":\"2019-11-25 20:05\",\n\t\"ultima_modificacion\":\"2019-11-25 20:05\",\n\t\"prioridad\":\"media\",\n\t\"lista\":{\"id\":1}\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:8080/api/v1/listas/move_in_progress/1",
 							"host": [
@@ -768,19 +823,10 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"fecha_creacion\":\"2019-11-25 20:05\",\n\t\"ultima_modificacion\":\"2019-11-25 20:05\",\n\t\"prioridad\":\"media\",\n\t\"lista\":{\"id\":1}\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:8080/api/v1/listas/move_waiting/1",
 							"host": [
@@ -811,19 +857,10 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"fecha_creacion\":\"2019-11-25 20:05\",\n\t\"ultima_modificacion\":\"2019-11-25 20:05\",\n\t\"prioridad\":\"media\",\n\t\"lista\":{\"id\":1}\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "localhost:8080/api/v1/listas/move_done/1",
 							"host": [

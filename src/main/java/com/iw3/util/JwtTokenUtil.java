@@ -19,10 +19,10 @@ public class JwtTokenUtil implements Serializable {
 	
 	private final String CLAIM_VERSION="version";
 	
-	@Value("${jwt.secret}")
+	@Value("${jwt.secret:secret-key}")
 	private String secret;
 	
-	@Value("${jwt.token.version}")
+	@Value("${jwt.token.version:1.0}")
 	private Double VERSION;
 	
 	/**

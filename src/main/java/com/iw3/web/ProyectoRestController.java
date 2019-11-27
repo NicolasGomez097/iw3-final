@@ -10,38 +10,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iw3.business.ISprintBusiness;
+import com.iw3.business.IProyectoBusiness;
 import com.iw3.exeptions.BusinessException;
-import com.iw3.exeptions.SprintException;
-import com.iw3.model.Sprint;
+import com.iw3.exeptions.ProyectoException;
+import com.iw3.model.Proyecto;
 import com.iw3.util.Constantes;
 
 @RestController
-@RequestMapping(Constantes.URL_SPRINT)
-public class SprintRestController {
+@RequestMapping(Constantes.URL_PROYECTO)
+public class ProyectoRestController {
 	
 	@Autowired
-	private ISprintBusiness sprintBusiness;
+	private IProyectoBusiness proyectoBusiness;
 	
 	@PostMapping("")
-	public ResponseEntity<String> crearSpring(@RequestBody Sprint sprint){
+	public ResponseEntity<String> crearProyecto(@RequestBody Proyecto proyecto){
+		
 		try {
-			sprintBusiness.esValido(sprint);
-			sprintBusiness.crearSprint(sprint);
+			proyectoBusiness.esValido(proyecto);
+			proyectoBusiness.crearProyecto(proyecto);
 			return new ResponseEntity<String>(HttpStatus.CREATED);
 		}catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}catch (SprintException e) {
+		}catch (ProyectoException e) {
 			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@GetMapping("")
-	public ResponseEntity<List<Sprint>> getList(){
+	public ResponseEntity<List<Proyecto>> getList(){
 		try {			
-			return new ResponseEntity<List<Sprint>>(sprintBusiness.getLista(),HttpStatus.OK);
+			return new ResponseEntity<List<Proyecto>>(proyectoBusiness.getLista(),HttpStatus.OK);
 		}catch (BusinessException e) {
-			return new ResponseEntity<List<Sprint>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<Proyecto>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

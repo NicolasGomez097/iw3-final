@@ -18,12 +18,12 @@
 	</div>
 	<hr/>
 	<div class="row">
-	<div class=  "col-lg-6">
-		<button type="button" class="btn btn-default" aria-label="Nuevo proyecto">
-  			<span class="glyphicon glyphicon-plus glyphicon-align-left"></span>
-		</button>
-		
-	</div>
+		<div class=  "col-lg-6">
+			<button type="button" class="btn btn-default" aria-label="Nuevo proyecto">
+	  			<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto
+			</button>
+			
+		</div>
 		<div class="col-lg-6">
 			<table class="table">
 				<thead>
@@ -34,7 +34,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="p in data track by $index">
+					<tr ng-repeat="p in data track by $index" ng-click="selectProyect(p)">
 						<td>{{p.id}}</td>
 						<td>{{p.nombre}}</td>
 						<td>{{p.fecha_creacion}}</td>

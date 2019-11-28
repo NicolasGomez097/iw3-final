@@ -2,6 +2,7 @@ package com.iw3.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,9 @@ public class ProyectoRestController {
 		}catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (ProyectoException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.BAD_REQUEST);
 		}
 	}
 	

@@ -10,4 +10,5 @@ public interface ISprintBusiness {
 	public void esValido(Sprint sprint)throws SprintException;
 	public void crearSprint(Sprint sprint) throws BusinessException,SprintException;
 	public List<Sprint> getLista() throws BusinessException;
+	public List<Sprint> getListaProyeto(Integer idProyecto) throws BusinessException;
 }

@@ -1,5 +1,6 @@
 package com.iw3.business;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,7 @@ public class SprintBusiness implements ISprintBusiness{
 			throw new SprintException("Ya existe este Sprint en este proyecto.");
 		
 		try {			
+			sprint.setFecha_inicio(new Date());
 			repo.save(sprint);
 			log.info("Se creo el sprint "+sprint.getJSON());
 		}catch (Exception e) {
@@ -61,6 +63,16 @@ public class SprintBusiness implements ISprintBusiness{
 	public List<Sprint> getLista() throws BusinessException {
 		try {
 			return repo.findAll();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new BusinessException(e);
+		}
+	}
+	
+	@Override
+	public List<Sprint> getListaProyeto(Integer idProyecto) throws BusinessException	 {
+		try {
+			return repo.findByProyectoId(idProyecto);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new BusinessException(e);

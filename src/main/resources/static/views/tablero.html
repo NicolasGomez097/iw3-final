@@ -17,15 +17,59 @@
 		</div>
 	</div>
 	<hr/>
-	<div class="row">
-		<div class="col-lg-6">
-			<ul>
-				<li ng-repeat="task in h.tasks">
-					{{task.nombre}}
-					<button ng-click="openEditHistory(h)" class="btn btn-info ">Editar</button>
-					<button ng-click="eliminar(h)" class="btn btn-warning glyphicon glyphicon-remove"></button>
-				</li>
-			</ul>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-2 contenedor">
+				<h4>Backlog</h4>		
+				<div class="row">
+					<div class="card col-xs-10" ng-repeat="task in backlog track by $index">
+					  <div class="card-body">
+					    <h5 class="card-title">{{task.nombre}}</h5>
+					  </div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="col-xs-2 contenedor">
+				<h4>To Do</h4>	
+				<div class="card" style="width: 18rem;" ng-repeat="task in toDo track by $index">
+				  <div class="card-body">
+				    <h4 class="card-title">{{task.nombre}}</h4>
+				  </div>
+				</div>		
+					
+			</div>
+			
+			<div class="col-xs-2 contenedor">
+				<h4>In Progress</h4>	
+				
+				<div class="card" style="width: 18rem;" ng-repeat="task in inProgress track by $index">
+				  <div class="card-body">
+				    <h4 class="card-title">{{task.nombre}}</h4>
+				  </div>
+				</div>	
+			</div>
+			
+			<div class="col-xs-2 contenedor">
+				<h4>Waiting</h4>	
+				
+				<div class="card" style="width: 18rem;" ng-repeat="task in waiting track by $index">
+				  <div class="card-body">
+				    <h4 class="card-title">{{task.nombre}}</h4>
+				  </div>
+				</div>	
+			</div>
+			
+			<div class="col-xs-2 contenedor">
+				<h4>Done</h4>
+				
+				<div class="card" style="width: 18rem;" ng-repeat="task in done track by $index">
+				  <div class="card-body">
+				    <h4 class="card-title">{{task.nombre}}</h4>
+				  </div>
+				</div>		
+			</div>
 		</div>
 	</div>
 </div>

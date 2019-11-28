@@ -20,6 +20,14 @@ angular.module('iw3')
 		templateUrl: 'views/proyectos.html',
 		controller:'proyectos'
 	})
+	.when('/sprints',{
+		templateUrl: 'views/sprints.html',
+		controller:'sprints'
+	})	
+	.when('/tablero',{
+		templateUrl: 'views/tablero.html',
+		controller:'tablero'
+	})
 	
 	.otherwise({
 		redirectTo: '/'

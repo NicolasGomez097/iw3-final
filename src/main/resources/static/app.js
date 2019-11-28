@@ -74,4 +74,9 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 			});
 		}
 	};
+	
+	$rootScope.isProyectSelected = function(){
+		return $localStorage.proyecto
+	}
+	
 });

@@ -1,5 +1,6 @@
 package com.iw3.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,6 +24,7 @@ public class Sprint {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
+	private Date fecha_inicio;
 	
 	@ManyToOne
 	private Proyecto proyecto;
@@ -60,5 +62,11 @@ public class Sprint {
 	}
 	public void setProyecto(Proyecto proyecto) {
 		this.proyecto = proyecto;
+	}
+	public Date getFecha_inicio() {
+		return fecha_inicio;
+	}
+	public void setFecha_inicio(Date fecha_inicio) {
+		this.fecha_inicio = fecha_inicio;
 	}	
 }

@@ -1,20 +1,25 @@
 angular.module('iw3')
 
-.controller('proyectos', function($scope, $rootScope, 
-		proyectosService,SweetAlert,Notification,
+.controller('sprints', function($scope, $rootScope, 
+		sprintService,SweetAlert,Notification,
 		$localStorage){
-	$scope.titulo="Proyectos";
+	if(!$localStorage.proyecto)
+		$rootScope.relocate("proyectos");
+		
+	$scope.titulo="Sprints del proyecto '" + $localStorage.proyecto.nombre+"'";
 	$scope.busqueda={text:""};
 	
 	$scope.data=[];
 	
+	
+	
 	$scope.refresh=function() {
-		proyectosService.list().then(
+		sprintService.list($localStorage.proyecto.id).then(
 			function(resp){
 				$scope.data=resp.data;
 			},
 			function(err){
-				Notification.error("No se pudo cargar la lista de proyectos");
+				Notification.error("No se pudo cargar la lista de sprints");
 			}
 		);
 	}
@@ -31,9 +36,9 @@ angular.module('iw3')
 		
 	$scope.refresh();
 	
-	$scope.selectProyect = function(proyecto){
-		$localStorage.proyecto = proyecto;
-		$rootScope.relocate("/sprints");
+	$scope.selectSprint = function(sprint){
+		$localStorage.sprint = sprint;
+		$rootScope.relocate("/tablero");
 	}
 	
 	

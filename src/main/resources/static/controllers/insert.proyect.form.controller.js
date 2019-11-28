@@ -15,12 +15,10 @@ angular.module('iw3')
 				console.log(resp);
 				if(resp.status===201){
 					Notification.success("Se inserto con exito");
-				}else{
-					Notification.error("No se pudo insertar");
 				}
 			},
 			function(err){
-				Notification.error("No se pudo insertar");
+				Notification.error(err.headers("error"));
 			}
 		);
 		$scope.closeModal();

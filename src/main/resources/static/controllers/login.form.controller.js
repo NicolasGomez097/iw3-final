@@ -4,8 +4,8 @@ angular.module('iw3')
 				$rootScope, $scope, $localStorage,
 				$uibModalInstance, coreService,
 				$log,Notification) {
+	
 			$scope.title="Ingreso";
-			$scope.checkJWT = true;
 			
 			$scope.user={name:"",password:""};
 			
@@ -14,11 +14,7 @@ angular.module('iw3')
 				
 				var apiResponse;
 				
-				if($scope.checkJWT == true){
-					apiResponse = coreService.loginJwt($scope.user);
-				}else{
-					apiResponse = coreService.login($scope.user);
-				}	
+				apiResponse = coreService.loginJwt($scope.user);
 				
 				apiResponse.then(							
 					function(resp){ 
@@ -44,7 +40,3 @@ angular.module('iw3')
 			  };  
 			  
 		}); //End LoginFormController
-
-
-
-

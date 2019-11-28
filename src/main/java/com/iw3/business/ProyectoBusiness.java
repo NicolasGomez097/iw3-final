@@ -1,5 +1,6 @@
 package com.iw3.business;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,8 @@ public class ProyectoBusiness implements IProyectoBusiness{
 		if(opProyecto.isPresent())
 			throw new ProyectoException("Ya existe este proyecto");
 		
-		try {			
+		try {	
+			proyecto.setFecha_creacion(new Date());	
 			repo.save(proyecto);
 			log.info("Se creo el proyecto "+proyecto.getJSON());
 		}catch (Exception e) {
@@ -43,7 +45,7 @@ public class ProyectoBusiness implements IProyectoBusiness{
 			throw new BusinessException(e);
 		}			
 	}
-
+	
 	@Override
 	public List<Proyecto> getLista() throws BusinessException {
 		try {

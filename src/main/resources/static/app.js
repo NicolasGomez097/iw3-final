@@ -11,10 +11,8 @@ app.constant('URL_API_BASE', '/api/v1/')
 app.constant('URL_BASE', '/')
 
 
-app.run(function($rootScope, $location, $uibModal, coreService, $localStorage, $stomp) {
-	
-	$rootScope.stomp=$stomp;
-	
+app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
+		
 	$rootScope.oldLoc=false;
 	$rootScope.relocate=function(loc) {
 		$rootScope.oldLoc=$location.$$path;
@@ -48,10 +46,17 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage, $
 		}
 	};
 	
+	
+	if(!$localStorage.logged){
+		$localStorage.logged = false;
+		$localStorage.userdata = {};
+		$rootScope.autenticado = false;
+		$rootScope.openLoginForm();
+	}
+		
 	$rootScope.InsertProyOpen = false;
 	$rootScope.openProyectForm = function(insert) {		
 		var control;	
-		console.log($rootScope.InsertProyOpen);
 		if(insert)
 			control = "insertProyectos";
 		else
@@ -69,56 +74,4 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage, $
 			});
 		}
 	};
-	
-	$rootScope.authInfo=function(cb,rolif,cbrolif) {
-		//Si el usuario está en el rol indicado en rolif, se ejecuta la callback cbrolif
-		if(rolif && cbrolif && $rootScope.inRole('ROLE_'+rolif) )
-			cb=cbrolif;
-		if(cb)
-			$rootScope.cbauth=cb;
-		if($rootScope.cbauth && $localStorage.logged)
-			$rootScope.cbauth();
-	}
-
-	
-	coreService.authInfo();
-}); //End run
-
-
-app.controller('controlador1', function($scope, $timeout, proyectosService, $log, $interval) {
-
-
-	$scope.datos=[];
-
-	
-	$scope.refresh=function(){
-		proyectosService.list().then(
-				function(resp){
-					$log.log(resp)
-					$scope.datos=resp.data;
-					
-				}
-				,
-				function(err){
-					$log.log(err)
-				}
-		);
-	};
-	
-	//$scope.refresh();
-	
-	
-	
-	
-	$scope.numero = 13;
-
-	$timeout(function() {
-		$scope.numero = 28;
-	}, 5000);
-	
-	$interval(function() {
-		$scope.refresh();
-	}, 5000);
-}
-
-);
+});

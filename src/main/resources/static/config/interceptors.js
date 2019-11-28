@@ -7,14 +7,12 @@ angular.module('iw3')
 		request : function(config) {
 			if ($localStorage.logged && $localStorage.userdata) {
 				userdata = $localStorage.userdata;
-				//config.headers['X-AUTH-TOKEN'] = userdata.authtoken;
 				config.headers['JWT-HEADER']= userdata.jwtToken;
 				$rootScope.autenticado = true;
 			} else {
-				//console.log($location)
 				$rootScope.autenticado = false;
 
-				//$rootScope.openLoginForm();
+				$rootScope.openLoginForm();
 			}
 			return config || $q.when(config);
 		},

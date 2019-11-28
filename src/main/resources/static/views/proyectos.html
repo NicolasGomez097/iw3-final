@@ -23,7 +23,6 @@
   			<span class="glyphicon glyphicon-plus glyphicon-align-left"></span>
 		</button>
 		
-		
 	</div>
 		<div class="col-lg-6">
 			<table class="table">
@@ -31,20 +30,18 @@
 					<tr>
 						<th>ID</th>
 						<th>Proyecto</th>
-						<th>Equipo</th>
 						<th>Fecha Creación</th>
-						<th>Ultima Modificación</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="p in data track by $index">
 						<td>{{p.id}}</td>
 						<td>{{p.nombre}}</td>
-						<td>{{p.equipo}}</td>
-						<td>{{p.fechaCreacion}}</td>
-						<td>{{p.fechaModificacion}}</td>
+						<td>{{p.fecha_creacion}}</td>
 						<td>
 						<button ng-click="openEditProyect(p)" class="btn btn-info ">Editar</button>
+						</td>
+						<td>
 						<button ng-click="eliminar(p)" class="btn btn-warning glyphicon glyphicon-remove"></button>
 						</td>
 					</tr>

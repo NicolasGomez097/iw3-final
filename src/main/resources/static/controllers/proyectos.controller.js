@@ -5,6 +5,7 @@ angular.module('iw3')
 	$scope.busqueda={text:""};
 	
 	$scope.data=[];
+	
 	$scope.refresh=function() {
 		proyectosService.list().then(
 			function(resp){
@@ -18,21 +19,18 @@ angular.module('iw3')
 	
 	$scope.openInsertForm=function(){
 		$scope.proy={};
-		$rootScope.openproyuctForm(true);
+		$rootScope.openProyectForm(true);
 	}
 	
 	$scope.openUpdateForm=function(proy) {
 		$rootScope.selectedproy = proy;
-		$rootScope.openproyuctForm(false);
+		$rootScope.openProyectForm(false);
 	}
 		
-	$scope.init=function() {
-		$scope.refresh();
-	}
-		
-	$rootScope.authInfo($scope.init,false,false);
+	$scope.refresh();
 	
-	$scope.eliminar=function(proy) {
+			
+	/*$scope.eliminar=function(proy) {
 		SweetAlert.swal({
 			  title: "Eliminar proyecto",
 			  text: "Está seguro que desea eliminar el proyecto <strong>"+proy.nombre+"</strong>?",
@@ -57,6 +55,6 @@ angular.module('iw3')
 					);
 				}
 			});
-	};
+	};*/
 	
 }); //End main controller

@@ -54,7 +54,7 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 				throw new NotFoundException("No se encuentra el usuario con username="+username);
 			
 			Usuario usuario = op.get();			
-			valid = passwordEncoder.matches(username,usuario.getPassword());
+			valid = passwordEncoder.matches(password,usuario.getPassword());
 		}catch (Exception e) {
 			log.error(e.getMessage());
 			throw new BusinessException(e);

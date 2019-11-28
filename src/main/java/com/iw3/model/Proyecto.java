@@ -1,5 +1,6 @@
 package com.iw3.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ public class Proyecto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
+	private Date fecha_creacion;
 	
 	@OneToMany(mappedBy = "proyecto")
 	@JsonIgnore
@@ -45,5 +47,11 @@ public class Proyecto {
 	}
 	public void setProyectos(List<Sprint> proyectos) {
 		this.proyectos = proyectos;
+	}
+	public Date getFecha_creacion() {
+		return fecha_creacion;
+	}
+	public void setFecha_creacion(Date fecha_creacion) {
+		this.fecha_creacion = fecha_creacion;
 	}
 }

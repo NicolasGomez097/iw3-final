@@ -41,7 +41,9 @@ public class ListaRestController {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (ListaException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -123,12 +125,16 @@ public class ListaRestController {
 				
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.NOT_FOUND);
 		}catch (BusinessException e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (ListaException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -138,12 +144,16 @@ public class ListaRestController {
 			listaBusiness.moveInProgress(idTarea);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.NOT_FOUND);
 		}catch (BusinessException e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (ListaException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -153,12 +163,16 @@ public class ListaRestController {
 			listaBusiness.moveWaiting(idTarea);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.NOT_FOUND);
 		}catch (BusinessException e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (ListaException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -168,12 +182,16 @@ public class ListaRestController {
 			listaBusiness.moveDone(idTarea);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		}catch (NotFoundException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.NOT_FOUND);
 		}catch (BusinessException e) {
 			e.printStackTrace();
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (ListaException e) {
-			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.BAD_REQUEST);
 		}
 	}
 }

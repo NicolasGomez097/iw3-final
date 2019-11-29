@@ -17,13 +17,27 @@ angular.module('iw3')
 
 
 	$scope.refresh=function() {
+		listService.list($localStorage.sprint.id).then(
+				function(resp){
+					$localStorage.id_backlog=resp.data[0].id;
+				},
+				function(err){
+					if(err.status == 404){
+						var lista = {nombre:'backlog',sprint:{}};
+						lista.sprint.id=$localStorage.sprint.id;
+						console.log(lista);
+						listService.insert(lista);
+					}
+				}
+			);
+		
 		listService.listBacklog($localStorage.sprint.id).then(
 			function(resp){
 				$scope.backlog=resp.data;
 			},
 			function(err){
 				if(err.status != 404)
-					Notification.error("No se pudo cargar la lista de sprints");
+					Notification.error("No se pudo cargar la lista de backlog");
 			}
 		);
 		

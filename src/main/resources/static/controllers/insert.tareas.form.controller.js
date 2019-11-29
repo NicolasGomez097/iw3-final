@@ -2,7 +2,7 @@ angular.module('iw3')
 .controller('insertTarea', function($scope, $rootScope, tareasService,Notification,$uibModalInstance, $localStorage){	
 	
 	$scope.tareaFormTitulo = $scope.SuccessBtnText ="Insertar";
-	$scope.task ={nombre:""};
+	$scope.task ={nombre:"",lista:{},prioridad:"Baja"};
 	
 	$scope.success=function() {		
 		if($scope.task.nombre == ""){
@@ -10,7 +10,7 @@ angular.module('iw3')
 			return;
 		}
 		
-		$scope.task.lista= $scope.backlog;
+		$scope.task.lista.id= $localStorage.id_backlog;
 
 				
 		tareasService.insert($scope.task).then(

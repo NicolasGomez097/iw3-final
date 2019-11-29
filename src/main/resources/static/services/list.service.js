@@ -1,5 +1,9 @@
 angular.module('iw3').factory('listService',function($http, URL_API_BASE){
 	return {
+		list:function(idSprint) {
+			return $http.get(URL_API_BASE+"listas?id_sprint="+idSprint);
+		},
+		
 		listBacklog:function(idSprint) {
 			return $http.get(URL_API_BASE+"listas/backlog?id_sprint="+idSprint);
 		},
@@ -20,8 +24,8 @@ angular.module('iw3').factory('listService',function($http, URL_API_BASE){
 			return $http.get(URL_API_BASE+"listas/done?id_sprint="+idSprint);
 		},
 	
-		insert:function(sprint) {
-			return $http.post(URL_API_BASE+"sprints",sprint);
+		insert:function(lista) {
+			return $http.post(URL_API_BASE+"listas",lista);
 		},
 		
 		update:function(sprint) {

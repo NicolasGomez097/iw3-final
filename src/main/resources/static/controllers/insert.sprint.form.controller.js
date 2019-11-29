@@ -2,7 +2,7 @@ angular.module('iw3')
 .controller('insertSprints', function($scope, $rootScope, sprintsService,Notification,$uibModalInstance, $localStorage){	
 	
 	$scope.sprintFormTitulo = $scope.SuccessBtnText ="Insertar";
-	$scope.sprint ={nombre:""};
+	$scope.sprint ={nombre:"",proyecto:{}};
 	
 	$scope.success=function() {		
 		if($scope.sprint.nombre == ""){
@@ -10,7 +10,7 @@ angular.module('iw3')
 			return;
 		}
 		
-		$scope.sprint.proyecto= $localStorage.proyecto;
+		$scope.sprint.proyecto.id= $localStorage.proyecto.id;
 
 				
 		sprintsService.insert($scope.sprint).then(

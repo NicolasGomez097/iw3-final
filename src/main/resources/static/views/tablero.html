@@ -22,22 +22,38 @@
 			<div class="col-xs-2 contenedor">
 				<h4>Backlog</h4>		
 				<div class="row">
-					<div class="card col-xs-10" ng-repeat="task in backlog track by $index">
-					  <div class="card-body">
-					    <h5 class="card-title">{{task.nombre}}</h5>
-					  </div>
-					</div>
+				
+				<ul dnd-list="backlog">
+					<li class="col-xs-10" ng-repeat="task in backlog track by $index"
+					   dnd-draggable="task"
+				       dnd-moved="backlog.splice($index, 1)"
+				       dnd-effect-allowed="move"
+				       dnd-selected="models.selected = backlog"
+				       ng-class="{'selected': models.selected === task}"
+					>
+					    <h5>{{task.nombre}}</h5>
+					</li>
+				
+				</ul>
+					
 				</div>
 				
 			</div>
 			
 			<div class="col-xs-2 contenedor">
 				<h4>To Do</h4>	
-				<div class="card" style="width: 18rem;" ng-repeat="task in toDo track by $index">
-				  <div class="card-body">
-				    <h4 class="card-title">{{task.nombre}}</h4>
-				  </div>
-				</div>		
+				<ul dnd-list="toDo">
+					<li class="col-xs-10" ng-repeat="task in toDo track by $index"
+					   dnd-draggable="task"
+				       dnd-moved="toDo.splice($index, 1)"
+				       dnd-effect-allowed="move"
+				       dnd-selected="models.selected = toDo"
+				       ng-class="{'selected': models.selected === task}"
+					>
+					    <h5>{{task.nombre}}</h5>
+					</li>
+				
+				</ul>
 					
 			</div>
 			

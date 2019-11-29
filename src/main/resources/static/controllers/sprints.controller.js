@@ -1,7 +1,7 @@
 angular.module('iw3')
 
 .controller('sprints', function($scope, $rootScope, 
-		sprintService,SweetAlert,Notification,
+		sprintsService,SweetAlert,Notification,
 		$localStorage){
 	if(!$localStorage.proyecto)
 		$rootScope.relocate("proyectos");
@@ -14,7 +14,7 @@ angular.module('iw3')
 	
 	
 	$scope.refresh=function() {
-		sprintService.list($localStorage.proyecto.id).then(
+		sprintsService.list($localStorage.proyecto.id).then(
 			function(resp){
 				$scope.data=resp.data;
 			},
@@ -24,14 +24,14 @@ angular.module('iw3')
 		);
 	}
 	
-	$scope.openInsertForm=function(){
-		$scope.proy={};
-		$rootScope.openProyectForm(true);
+	$scope.openInsertSprintForm=function(){
+		$scope.sprint={};
+		$rootScope.openSprintForm(true);
 	}
 	
-	$scope.openUpdateForm=function(proy) {
-		$rootScope.selectedproy = proy;
-		$rootScope.openProyectForm(false);
+	$scope.openUpdateForm=function(sprint) {
+		$rootScope.selectedsprint = sprint;
+		$rootScope.openSprintForm(false);
 	}
 		
 	$scope.refresh();

@@ -15,6 +15,11 @@ angular.module('iw3')
 	$scope.waiting=[];
 	$scope.done=[];
 	
+	$scope.models = {
+	        selected: null,
+	        lists: {"A": [], "B": []}
+	    };
+
 	$scope.refresh=function() {
 		listService.listBacklog($localStorage.sprint.id).then(
 			function(resp){

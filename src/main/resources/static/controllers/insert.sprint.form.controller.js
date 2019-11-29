@@ -1,16 +1,19 @@
 angular.module('iw3')
-.controller('insertProyectos', function($scope, $rootScope, proyectosService,Notification,$uibModalInstance){	
+.controller('insertSprints', function($scope, $rootScope, sprintsService,Notification,$uibModalInstance, $localStorage){	
 	
-	$scope.proyFormTitulo = $scope.SuccessBtnText ="Insertar";
-	$scope.proy ={nombre:""};
+	$scope.sprintFormTitulo = $scope.SuccessBtnText ="Insertar";
+	$scope.sprint ={nombre:""};
 	
 	$scope.success=function() {		
-		if($scope.proy.nombre == ""){
+		if($scope.sprint.nombre == ""){
 			Notification.error("El nombre no puede ser vacio");
 			return;
 		}
+		
+		$scope.sprint.proyecto= $localStorage.proyecto;
+
 				
-		proyectosService.insert($scope.proy).then(
+		sprintsService.insert($scope.sprint).then(
 			function(resp){
 				console.log(resp);
 				if(resp.status===201){
@@ -25,9 +28,9 @@ angular.module('iw3')
 	}	
 	
 	$scope.closeModal = function(){
-		if($rootScope.InsertProyOpen){
+		if($rootScope.InsertSprintOpen){
 			$uibModalInstance.dismiss(true);
-			$rootScope.InsertProyOpen = false;
+			$rootScope.InsertSprintOpen = false;
 		}
 	}
 });

@@ -75,6 +75,27 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 		}
 	};
 	
+	$rootScope.InsertSprintOpen = false;
+	$rootScope.openSprintForm = function(insert) {		
+		var control;	
+		if(insert)
+			control = "insertSprints";
+		else
+			control = "updateSprints"
+		
+		if (!$rootScope.InsertSprintOpen) {
+			$rootScope.InsertSprintOpen = true;
+			$uibModal.open({
+				animation : true,
+				backdrop : 'static',
+				keyboard : false,
+				templateUrl : 'views/SprintForm.html',
+				controller : control,
+				size : 'md'
+			});
+		}
+	};
+	
 	$rootScope.isProyectSelected = function(){
 		return $localStorage.proyecto
 	}

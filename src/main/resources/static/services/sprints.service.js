@@ -1,4 +1,4 @@
-angular.module('iw3').factory('sprintService',function($http, URL_API_BASE){
+angular.module('iw3').factory('sprintsService',function($http, URL_API_BASE){
 	return {
 		list:function(idProyecto) {
 			return $http.get(URL_API_BASE+"sprints?id_proyecto="+idProyecto);

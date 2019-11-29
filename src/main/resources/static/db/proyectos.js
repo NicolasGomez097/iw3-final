@@ -1,4 +1,4 @@
-[ {
+/*[ {
 				id : 1,
 				nombre : "Proyecto 1",
 				equipo : "Team 1"

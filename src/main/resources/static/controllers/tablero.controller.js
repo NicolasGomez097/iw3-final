@@ -8,14 +8,94 @@ angular.module('iw3')
 		
 	$scope.titulo="Tablero del sprint '" + $localStorage.sprint.nombre+"'";
 	$scope.busqueda={text:""};
+	
+	$scope.listas = {
+			Backlog:[], 
+			"To Do": [],
+			"In Progress":[],
+			Waiting:[],
+			Done:[]};
+	
+	$scope.onDrop = function(nombreListaOrigen, srcIndex, nombreListaDestino, targetIndex) {
+		var valid = false;
+		var idTarea = $scope.listas[nombreListaOrigen][srcIndex].id;
+		var promise;
 		
-	$scope.backlog=[];
-	$scope.toDo=[];
-	$scope.inProgress=[];
-	$scope.waiting=[];
-	$scope.done=[];
-
-
+		if(nombreListaOrigen == "Backlog"){
+			if(nombreListaDestino != "To Do"){
+				Notification.error("Solo se puede mover de Backlog a To Do");
+				return false;
+			}	
+			promise = listService.moveToDo(idTarea);
+		}
+		
+		if(nombreListaOrigen == "To Do"){
+			if(nombreListaDestino != "In Progress" && nombreListaDestino != "Waiting"){
+				Notification.error("Solo se puede mover de To Do a In Progress o Waiting");
+				return false;
+			}	
+			
+			if(nombreListaDestino == "In Progress")
+				promise = listService.moveInProgress(idTarea);
+			else
+				promise = listService.moveWaiting(idTarea);			
+		}
+		
+		if(nombreListaOrigen == "In Progress"){
+			if(nombreListaDestino != "Waiting" && nombreListaDestino != "Done"){
+				Notification.error("Solo se puede mover de In Progress a Waiting o Done");
+				return false;
+			}	
+			
+			if(nombreListaDestino == "Waiting")
+				promise = listService.moveWaiting(idTarea);
+			else
+				promise = listService.moveDone(idTarea);			
+		}
+		
+		if(nombreListaOrigen == "Waiting"){
+			if(nombreListaDestino != "In Progress" && nombreListaDestino != "Done"){
+				Notification.error("Solo se puede mover de Waiting a In Progress o Done");
+				return false;
+			}	
+			
+			if(nombreListaDestino == "In Progress")
+				promise = listService.moveInProgress(idTarea);
+			else
+				promise = listService.moveDone(idTarea);			
+		}
+		
+		if(nombreListaOrigen == "Done"){
+			Notification.error("Las tareas de Done no pueden ser alteradas");
+			return false;		
+		}
+		
+		promise.then(
+				function(resp){
+					if(resp.status == 200){
+						var srcList = $scope.listas[nombreListaOrigen];
+						var targetList = $scope.listas[nombreListaDestino];		
+						
+					    targetList.splice(targetIndex, 0, srcList[srcIndex]);
+					    if (srcList == targetList && targetIndex <= srcIndex) 
+					    	srcIndex++;
+					    srcList.splice(srcIndex, 1);
+					    Notification.success("Se actualizo correctamente");
+					}
+				},
+				function(badResp){
+					if(badResp.status == 400)
+						Notification.error(badResp.headers("error"));
+				}
+		)
+		
+		return true;
+    };
+    
+    $scope.dropCallback = function(obj){
+    	console.log(obj);
+    }
+		
 	$scope.refresh=function() {
 		listService.list($localStorage.sprint.id).then(
 				function(resp){
@@ -33,7 +113,7 @@ angular.module('iw3')
 		
 		listService.listBacklog($localStorage.sprint.id).then(
 			function(resp){
-				$scope.backlog=resp.data;
+				$scope.listas.Backlog=resp.data;
 			},
 			function(err){
 				if(err.status != 404)
@@ -43,7 +123,7 @@ angular.module('iw3')
 		
 		listService.listToDo($localStorage.sprint.id).then(
 				function(resp){
-					$scope.toDo=resp.data;
+					$scope.listas["To Do"]=resp.data;
 				},
 				function(err){
 					if(err.status != 404)
@@ -53,7 +133,7 @@ angular.module('iw3')
 		
 		listService.listInProgress($localStorage.sprint.id).then(
 				function(resp){
-					$scope.inProgress=resp.data;
+					$scope.listas["In Progress"]=resp.data;
 				},
 				function(err){
 					if(err.status != 404)
@@ -63,7 +143,7 @@ angular.module('iw3')
 		
 		listService.listWaiting($localStorage.sprint.id).then(
 				function(resp){
-					$scope.waiting=resp.data;
+					$scope.listas.Waiting=resp.data;
 				},
 				function(err){
 					if(err.status != 404)
@@ -73,7 +153,7 @@ angular.module('iw3')
 		
 		listService.listDone($localStorage.sprint.id).then(
 				function(resp){
-					$scope.done=resp.data;
+					$scope.listas.Done=resp.data;
 				},
 				function(err){
 					if(err.status != 404)

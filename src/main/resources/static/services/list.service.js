@@ -28,6 +28,19 @@ angular.module('iw3').factory('listService',function($http, URL_API_BASE){
 			return $http.post(URL_API_BASE+"listas",lista);
 		},
 		
+		moveToDo:function(idTarea) {
+			return $http.put(URL_API_BASE+"listas/move_todo/"+idTarea);
+		},
+		moveInProgress:function(idTarea) {
+			return $http.put(URL_API_BASE+"listas/move_in_progress/"+idTarea);
+		},
+		moveWaiting:function(idTarea) {
+			return $http.put(URL_API_BASE+"listas/move_waiting/"+idTarea);
+		},
+		moveDone:function(idTarea) {
+			return $http.put(URL_API_BASE+"listas/move_done/"+idTarea);
+		},
+		
 		update:function(sprint) {
 			return $http.put(URL_API_BASE+"sprints",sprint);
 		},

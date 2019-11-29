@@ -2,7 +2,7 @@
 <hr />
 <div ng-show="autenticado">
 	<button class="btn btn-primary" ng-click="refresh()">Actualizar</button>
-	<button class="btn btn-success" ng-click="openInsertForm()">Insertar</button>
+	<button class="btn btn-success" ng-click="openInsertTareaForm()">Insertar</button>
 	<hr />
 	<div class="row">
 		<div class="col-lg-6">
@@ -19,48 +19,40 @@
 	<hr/>
 	<div class="container-fluid">
 		<div class="row">
+		
+		<div class=  "col-lg-12">
+			<button type="button" class="btn btn-default" aria-label="Nuevo tarea" ng-click="openInsertTareaForm()">
+	  			<span class="glyphicon glyphicon-plus"></span> Nueva Tarea
+			</button>
+			
+		</div>
 			<div class="col-xs-2 contenedor">
 				<h4>Backlog</h4>		
 				<div class="row">
-				
-				<ul dnd-list="backlog">
-					<li class="col-xs-10" ng-repeat="task in backlog track by $index"
-					   dnd-draggable="task"
-				       dnd-moved="backlog.splice($index, 1)"
-				       dnd-effect-allowed="move"
-				       dnd-selected="models.selected = backlog"
-				       ng-class="{'selected': models.selected === task}"
-					>
-					    <h5>{{task.nombre}}</h5>
-					</li>
-				
-				</ul>
-					
+					<div class="card" style="width: 18rem;" ng-repeat="task in backlog track by $index" data-drag="true" jqyoui-draggable>
+					  <div class="card-body">
+					    <h4 class="card-title">{{task.nombre}}</h4>
+					  </div>
+					</div>	
 				</div>
 				
 			</div>
 			
 			<div class="col-xs-2 contenedor">
 				<h4>To Do</h4>	
-				<ul dnd-list="toDo">
-					<li class="col-xs-10" ng-repeat="task in toDo track by $index"
-					   dnd-draggable="task"
-				       dnd-moved="toDo.splice($index, 1)"
-				       dnd-effect-allowed="move"
-				       dnd-selected="models.selected = toDo"
-				       ng-class="{'selected': models.selected === task}"
-					>
-					    <h5>{{task.nombre}}</h5>
-					</li>
+				<div class="card" style="width: 18rem;" ng-repeat="task in toDo track by $index" data-drag="true" jqyoui-draggable>
+				  <div class="card-body">
+				    <h4 class="card-title">{{task.nombre}}</h4>
+				  </div>
+				</div>	
 				
-				</ul>
 					
 			</div>
 			
 			<div class="col-xs-2 contenedor">
 				<h4>In Progress</h4>	
 				
-				<div class="card" style="width: 18rem;" ng-repeat="task in inProgress track by $index">
+				<div class="card" style="width: 18rem;" ng-repeat="task in inProgress track by $index" >
 				  <div class="card-body">
 				    <h4 class="card-title">{{task.nombre}}</h4>
 				  </div>

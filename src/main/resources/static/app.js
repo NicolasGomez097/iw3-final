@@ -96,6 +96,28 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 		}
 	};
 	
+	
+	$rootScope.InsertTareaOpen = false;
+	$rootScope.openInsertTareaForm = function(insert) {		
+		var control;	
+		if(insert)
+			control = "insertTarea";
+		else
+			control = "insertTarea"
+		
+		if (!$rootScope.InsertTareaOpen) {
+			$rootScope.InsertTareaOpen = true;
+			$uibModal.open({
+				animation : true,
+				backdrop : 'static',
+				keyboard : false,
+				templateUrl : 'views/TareaForm.html',
+				controller : control,
+				size : 'md'
+			});
+		}
+	};
+	
 	$rootScope.isProyectSelected = function(){
 		return $localStorage.proyecto
 	}

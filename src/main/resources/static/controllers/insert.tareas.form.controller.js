@@ -10,7 +10,7 @@ angular.module('iw3')
 			return;
 		}
 		
-		$scope.task.sprint= $localStorage.sprint;
+		$scope.task.lista= $scope.backlog;
 
 				
 		tareasService.insert($scope.task).then(

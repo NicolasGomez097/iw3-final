@@ -3,9 +3,6 @@ tbody > tr:hover{
 	cursor: pointer;
 }
 
-.optionForm{
-	margin-top: 5px;
-}
 
 .contenedor{
 	background-color: rgba(0,0,0,0.1);

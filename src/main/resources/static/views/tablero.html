@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<hr/>
-	<div class="container-fluid">
+	<div class="container-fluid contenedor">
 		<div class="row">
 		
 		<div class=  "col-lg-12">
@@ -29,7 +29,8 @@
 			<div class="col-xs-2 contenedor">
 				<h4>Backlog</h4>		
 				<div class="row">
-					<div class="card" style="width: 18rem;" ng-repeat="task in backlog track by $index" data-drag="true" jqyoui-draggable>
+					<div class="card" style="width: 18rem;" ng-repeat="task in backlog track by $index" data-drag="true" jqyoui-draggable 
+					insertInline="true"	onDrop="onDropBacklog()" data-drop="true" jqyoui-droppable>
 					  <div class="card-body">
 					    <h4 class="card-title">{{task.nombre}}</h4>
 					  </div>
@@ -40,7 +41,8 @@
 			
 			<div class="col-xs-2 contenedor">
 				<h4>To Do</h4>	
-				<div class="card" style="width: 18rem;" ng-repeat="task in toDo track by $index" data-drag="true" jqyoui-draggable>
+				<div class="card" style="width: 18rem;" ng-repeat="task in toDo track by $index" data-drag="true" jqyoui-draggable 
+				data-drop="true" jqyoui-droppable onDrop="onDropToDo()" stack="true">
 				  <div class="card-body">
 				    <h4 class="card-title">{{task.nombre}}</h4>
 				  </div>
@@ -52,7 +54,8 @@
 			<div class="col-xs-2 contenedor">
 				<h4>In Progress</h4>	
 				
-				<div class="card" style="width: 18rem;" ng-repeat="task in inProgress track by $index" >
+				<div class="card" style="width: 18rem;" ng-repeat="task in inProgress track by $index" data-drag="true" jqyoui-draggable
+				 data-drop="true" jqyoui-droppable onDrop="onDropInProgress()" stack="true">
 				  <div class="card-body">
 				    <h4 class="card-title">{{task.nombre}}</h4>
 				  </div>
@@ -62,7 +65,8 @@
 			<div class="col-xs-2 contenedor">
 				<h4>Waiting</h4>	
 				
-				<div class="card" style="width: 18rem;" ng-repeat="task in waiting track by $index">
+				<div class="card" style="width: 18rem;" ng-repeat="task in waiting track by $index" data-drag="true" jqyoui-draggable
+				 data-drop="true" jqyoui-droppable onDrop="onDropWaiting()">
 				  <div class="card-body">
 				    <h4 class="card-title">{{task.nombre}}</h4>
 				  </div>
@@ -72,7 +76,8 @@
 			<div class="col-xs-2 contenedor">
 				<h4>Done</h4>
 				
-				<div class="card" style="width: 18rem;" ng-repeat="task in done track by $index">
+				<div class="card" style="width: 18rem;" ng-repeat="task in done track by $index" data-drag="true" jqyoui-draggable
+				 data-drop="true" jqyoui-droppable onDrop="onDropDone()">
 				  <div class="card-body">
 				    <h4 class="card-title">{{task.nombre}}</h4>
 				  </div>

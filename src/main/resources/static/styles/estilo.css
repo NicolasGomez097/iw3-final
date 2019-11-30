@@ -2,8 +2,18 @@ tbody > tr:hover{
 	background-color: rgba(0,0,0,0.2);
 	cursor: pointer;
 }
-
-
+.redBackground{
+	background: #ff6961;
+}
+.link{
+	color: blue;
+}
+.yellowBackground{
+	background: #ffb861;
+}
+.greenBackground{
+	background: #61ff69
+}
 .contenedor{
 	background-color: rgba(0,0,0,0.1);
 	border-radius: 5px;

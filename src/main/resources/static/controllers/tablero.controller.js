@@ -15,7 +15,17 @@ angular.module('iw3')
 			"In Progress":[],
 			Waiting:[],
 			Done:[]};
-	
+	$scope.checkColor = function(prioridad){
+		if(prioridad == 'Alta'){
+			return 'redBackground';
+		}
+		if(prioridad == 'Media'){
+			return 'yellowBackground';
+		}
+		else{
+			return 'greenBackground';
+		}
+	}
 	$scope.onDrop = function(nombreListaOrigen, srcIndex, nombreListaDestino, targetIndex) {
 		var valid = false;
 		var idTarea = $scope.listas[nombreListaOrigen][srcIndex].id;
@@ -162,14 +172,14 @@ angular.module('iw3')
 			);
 	}
 	
-	$scope.openInsertForm=function(){
+	$scope.openInsertTareaForm()=function(){
 		$scope.proy={};
-		$rootScope.openProyectForm(true);
+		$rootScope.openInsertTareaForm(true);
 	}
 	
-	$scope.openUpdateForm=function(proy) {
-		$rootScope.selectedproy = proy;
-		$rootScope.openProyectForm(false);
+	$scope.openUpdateTareaForm=function(task) {
+		$rootScope.selectedTask = task;
+		$rootScope.openInsertTareaForm(false);
 	}
 		
 	$scope.refresh();

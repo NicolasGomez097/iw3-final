@@ -55,7 +55,7 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 	}
 		
 	$rootScope.InsertProyOpen = false;
-	$rootScope.openProyectForm = function(insert) {		
+	$rootScope.openProyectForm = function(insert) {	
 		var control;	
 		if(insert)
 			control = "insertProyectos";
@@ -103,7 +103,7 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 		if(insert)
 			control = "insertTarea";
 		else
-			control = "insertTarea"
+			control = "updateTarea"
 		
 		if (!$rootScope.InsertTareaOpen) {
 			$rootScope.InsertTareaOpen = true;
@@ -117,6 +117,28 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 			});
 		}
 	};
+	
+	/*$rootScope.UpdateTareaOpen = false;
+	$rootScope.openUpdateTareaForm = function(update) {		
+		var control;	
+		if(update)
+			control = "updateTarea";
+		else
+			control = "updateTarea"
+		
+		if (!$rootScope.UpdateTareaOpen) {
+			$rootScope.UpdateTareaOpen = true;
+			$uibModal.open({
+				animation : true,
+				backdrop : 'static',
+				keyboard : false,
+				templateUrl : 'views/UpdateTareaForm.html',
+				controller : control,
+				size : 'md'
+			});
+		}
+	};*/
+	
 	
 	$rootScope.isProyectSelected = function(){
 		return $localStorage.proyecto

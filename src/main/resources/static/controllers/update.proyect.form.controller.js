@@ -3,10 +3,11 @@ angular.module('iw3')
 	
 	$scope.proyFormTitulo = $scope.SuccessBtnText ="Modificar";
 	
-	$scope.proy = JSON.parse(JSON.stringify($rootScope.selectedProy));
-	//$scope.proy = $rootScope.selectedProy;
+	//$scope.proy = JSON.parse(JSON.stringify($rootScope.selectedProy));
+	$scope.proy = $rootScope.selectedProy;
 	
-	$scope.success=function() {		
+	$scope.success=function() {	
+		console.log($scope.proy);
 		proyectosService.update($scope.proy).then(
 			function(resp){
 				if(resp.status===200){

@@ -12,7 +12,7 @@ angular.module('iw3').factory('tareasService',function($http, URL_API_BASE){
 			return $http.put(URL_API_BASE+"tareas",tarea);
 		},
 		
-		delete:function(id){
+		deleteTask:function(id){
 			return $http.delete(URL_API_BASE+"tareas/"+id);
 		}
 	}

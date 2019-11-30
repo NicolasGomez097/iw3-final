@@ -25,7 +25,7 @@ angular.module('iw3')
 	}
 	
 	$scope.openUpdateForm=function(proy) {
-		$rootScope.selectedproy = proy;
+		$rootScope.selectedProy = proy;
 		$rootScope.openProyectForm(false);
 	}
 		

@@ -34,12 +34,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="p in data track by $index" ng-click="selectProyect(p)">
+					<tr ng-repeat="p in data track by $index" >
 						<td>{{p.id}}</td>
-						<td>{{p.nombre}}</td>
+						<td class="link" ng-click="selectProyect(p)">{{p.nombre}}</td>
 						<td>{{p.fecha_creacion}}</td>
 						<td>
-						<button ng-click="openEditProyect(p)" class="btn btn-info ">Editar</button>
+						<button ng-click="openUpdateForm(p)" class="btn btn-info ">Editar</button>
 						</td>
 						<td>
 						<button ng-click="eliminar(p)" class="btn btn-warning glyphicon glyphicon-remove"></button>

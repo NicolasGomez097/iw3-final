@@ -38,8 +38,8 @@
 							<li ng-repeat="task in lista" 
 								dnd-draggable="null"
 								dnd-effect-allowed="move"
-								dnd-callback="onDrop(nombreLista, $index, nombreListaDestino, targetIndex)">
-								{{task.nombre}}</li>
+								dnd-callback="onDrop(nombreLista, $index, nombreListaDestino, targetIndex)" ng-class="checkColor(task.prioridad)" ng-click="openUpdateTareaForm(task)">
+								{{task.nombre}} : ({{task.estimacion}})</li>
 					</div>
 				</div>
 			</div>

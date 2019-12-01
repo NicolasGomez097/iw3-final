@@ -18,9 +18,7 @@ import com.iw3.business.IProyectoBusiness;
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.NotFoundException;
 import com.iw3.exeptions.ProyectoException;
-import com.iw3.exeptions.TareaException;
 import com.iw3.model.Proyecto;
-import com.iw3.model.Tarea;
 import com.iw3.util.Constantes;
 
 @RestController

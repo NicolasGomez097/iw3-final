@@ -5,9 +5,7 @@ import java.util.List;
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.NotFoundException;
 import com.iw3.exeptions.ProyectoException;
-import com.iw3.exeptions.TareaException;
 import com.iw3.model.Proyecto;
-import com.iw3.model.Tarea;
 
 public interface IProyectoBusiness {
 	public void esValido(Proyecto proyecto)throws ProyectoException;

@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.NotFoundException;
 import com.iw3.exeptions.ProyectoException;
-import com.iw3.exeptions.TareaException;
-import com.iw3.model.Lista;
 import com.iw3.model.Proyecto;
-import com.iw3.model.Tarea;
 import com.iw3.repository.ProyectoRepository;
 
 @Service

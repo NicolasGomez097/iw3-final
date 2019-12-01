@@ -15,7 +15,6 @@ angular.module('iw3')
 				
 		tareasService.insert($scope.task).then(
 			function(resp){
-				console.log(resp);
 				if(resp.status===201){
 					Notification.success("Se inserto con exito");
 				}

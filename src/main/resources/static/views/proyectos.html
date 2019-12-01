@@ -1,0 +1,53 @@
+<h2>{{titulo}}</h2>
+<hr />
+<div ng-show="autenticado">
+	<button class="btn btn-primary" ng-click="refresh()">Actualizar</button>
+	<button class="btn btn-success" ng-click="openInsertForm()">Insertar</button>
+	<hr />
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="busqueda.text" placeholder="Buscar....">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">
+						<i class="glyphicon glyphicon-search"></i>
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<hr/>
+	<div class="row">
+		<div class=  "col-lg-12">
+			<button type="button" class="btn btn-default" aria-label="Nuevo proyecto" ng-click="openInsertForm()">
+	  			<span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto
+			</button>
+			
+		</div>
+		<div class="col-lg-6">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Proyecto</th>
+						<th>Fecha Creación</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="p in data track by $index" >
+						<td>{{p.id}}</td>
+						<td class="link" ng-click="selectProyect(p)">{{p.nombre}}</td>
+						<td>{{p.fecha_creacion}}</td>
+						<td>
+						<button ng-click="openUpdateForm(p)" class="btn btn-info ">Editar</button>
+						</td>
+						<td>
+						<button ng-click="eliminar(p)" class="btn btn-warning glyphicon glyphicon-remove"></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div ng-show="!autenticado">Debe autenticarse!</div>

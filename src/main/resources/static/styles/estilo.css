@@ -1,0 +1,52 @@
+tbody > tr:hover{
+	background-color: rgba(0,0,0,0.2);
+	cursor: pointer;
+}
+.redBackground{
+	background: #ff6961A0;
+}
+.link{
+	color: blue;
+}
+.yellowBackground{
+	background: #ffb861;
+}
+.greenBackground{
+	background: #61ff69A0
+}
+.contenedor{
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 5px;
+	margin-right: 30px;
+}
+
+.card{
+	background-color: rgba(0,0,0,0.15);
+	border-radius: 5px;
+	padding: 5px;
+	margin-top: 10px;
+}
+
+ul[dnd-list] {
+  min-height: 42px;
+  padding: 0;
+}
+
+ul[dnd-list] > li {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  padding: 10px 15px;
+}
+
+ul[dnd-list] > li.dndDraggingSource {
+  display: none;
+}
+
+ul[dnd-list] > li.dndPlaceholder {
+  background-color: #ddd;
+  min-height: 42px;
+}
+
+.panel .panel-body {
+  padding: 0;
+}

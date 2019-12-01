@@ -1,0 +1,50 @@
+<h2>{{titulo}}</h2>
+<hr />
+<div ng-show="autenticado">
+	<button class="btn btn-primary" ng-click="refresh()">Actualizar</button>
+	<button class="btn btn-success" ng-click="openInsertSprintForm()">Insertar</button>
+	<hr />
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="busqueda.text" placeholder="Buscar....">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">
+						<i class="glyphicon glyphicon-search"></i>
+					</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<hr/>
+	<div class="row">
+	
+			<div class=  "col-lg-12">
+			<button type="button" class="btn btn-default" aria-label="Nuevo sprint" ng-click="openInsertSprintForm()">
+	  			<span class="glyphicon glyphicon-plus"></span> Nuevo Sprint
+			</button>
+			
+		</div>
+		<div class="col-lg-6">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nombre Sprint</th>
+						<th>Fecha Inicio</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="s in data track by $index" ng-click="selectSprint(s)">
+						<td>{{s.id}}</td>
+						<td>{{s.nombre}}</td>
+						<td>{{s.fecha_inicio}}</td>
+						<td><button ng-click="openEditSprint(s)" class="btn btn-info ">Editar</button></td>
+						<td><button ng-click="eliminar(s)" class="btn btn-warning glyphicon glyphicon-remove"></button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div ng-show="!autenticado">Debe autenticarse!</div>

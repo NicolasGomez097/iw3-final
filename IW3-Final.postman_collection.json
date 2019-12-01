@@ -1,0 +1,926 @@
+{
+	"info": {
+		"_postman_id": "2d04b958-f2bf-436e-aeaa-689ed1a5571d",
+		"name": "IW3-Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Proyecto",
+			"item": [
+				{
+					"name": "Obtener Proyectos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/proyectos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"proyectos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Proyecto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "JWT-HEADER",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"Proyecto 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/proyectos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"proyectos"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Sprint",
+			"item": [
+				{
+					"name": "Obtener Sprints",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/sprints?=",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sprints"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Sprints",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"sprint 1\",\n\t\"proyecto\":{\"id\":1}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/sprints",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sprints"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Listas",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Obtener Listas Sprint",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/v1/listas?id_sprint=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas"
+									],
+									"query": [
+										{
+											"key": "id_sprint",
+											"value": "1"
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Lista Backlog",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/v1/listas/backlog?id_sprint=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas",
+										"backlog"
+									],
+									"query": [
+										{
+											"key": "id_sprint",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Lista Backlog Ordenada",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "JWT-HEADER",
+										"type": "text",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/v1/listas/backlog/order/prioridad/desc?id_sprint=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas",
+										"backlog",
+										"order",
+										"prioridad",
+										"desc"
+									],
+									"query": [
+										{
+											"key": "id_sprint",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Lista To Do",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/v1/listas/to_do?id_sprint=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas",
+										"to_do"
+									],
+									"query": [
+										{
+											"key": "id_sprint",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Lista In Progress",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/v1/listas/in_progress?id_sprint=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas",
+										"in_progress"
+									],
+									"query": [
+										{
+											"key": "id_sprint",
+											"value": "1"
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Lista Waiting",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/v1/listas/waiting?id_sprint=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas",
+										"waiting"
+									],
+									"query": [
+										{
+											"key": "id_sprint",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obtener Lista Done",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8080/api/v1/listas/done?id_sprint=1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas",
+										"done"
+									],
+									"query": [
+										{
+											"key": "id_sprint",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Insertar Lista Backlog",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\":\"backlog\",\n\t\"sprint\":{\"id\":1}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/listas",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insertar Lista To Do",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\":\"to_do\",\n\t\"sprint\":{\"id\":1}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/listas",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insertar Lista In Progress",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\":\"in_progress\",\n\t\"sprint\":{\"id\":1}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/listas",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insertar Lista Waiting",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\":\"waiting\",\n\t\"sprint\":{\"id\":1}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/listas",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insertar Lista Done",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "JWT-HEADER",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\":\"done\",\n\t\"sprint\":{\"id\":1}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/api/v1/listas",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"listas"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tareas",
+			"item": [
+				{
+					"name": "Obtener Tareas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDc5MzIwMCwiaWF0IjoxNTc0Nzc1MjAwfQ.FQWiMG7Wj5qN565tcvbx0OzWxTtHwV1AeXcAzLnT-N_jwwyS6rFkZTzPH6DDXbOu11tVYlmk0AqoHMX-MCC4Vw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/tareas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar Tarea",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/tareas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Tarea",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":1,\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1},\n\t\"estimacion\": 3.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/tareas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Mover tareas",
+			"item": [
+				{
+					"name": "Mover tarea a To Do",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/listas/move_todo/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"listas",
+								"move_todo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mover tarea a In Progress",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/listas/move_in_progress/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"listas",
+								"move_in_progress",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mover tarea a Waiting",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/listas/move_waiting/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"listas",
+								"move_waiting",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mover tarea a Done",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "JWT-HEADER",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/listas/move_done/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"listas",
+								"move_done",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "JWT",
+			"item": [
+				{
+					"name": "Obtener Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"admin\",\n\t\"password\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/loginJwt",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"loginJwt"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

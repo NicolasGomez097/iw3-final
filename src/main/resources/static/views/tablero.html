@@ -1,0 +1,57 @@
+<h2>{{titulo}}</h2>
+<hr />
+<div ng-show="autenticado">
+
+	<div class="row">
+		<div class="col-xs-3">
+	     	<button class="btn btn-primary" ng-click="refresh()">Actualizar</button>
+			<button class="btn btn-success" ng-click="openInsertTareaForm()">Insertar</button>
+		</div>
+		<div class="col-xs-3">
+			<select class="form-control" ng-model="orden" ng-change="refresh()">
+		        <option value="none">Sin orden</option>
+		        <option value="prioridad">Por prioridad</option>
+		        <option value="fecha_creacion">Por fecha de creacion</option>
+		    </select>
+		</div>
+		
+		<div class="col-xs-2" ng-if="orden != 'none'">
+			<select class="form-control" ng-model="form.tipo" ng-change="refresh()">
+		        <option value="asc">Ascendente</option>
+		        <option value="desc">Descendente</option>
+		    </select>
+		</div>
+    </div>
+    
+	<div class="container-fluid" style="margin-top:25px">
+		<div class="row">
+
+			<div class="col-lg-12">
+				<button type="button" class="btn btn-default"
+					aria-label="Nuevo tarea" ng-click="openInsertTareaForm()">
+					<span class="glyphicon glyphicon-plus"></span> Nueva Tarea
+				</button>
+
+			</div>
+			<div ng-repeat="(nombreLista, lista) in listas" class="col-xs-12 col-sm-6 col-md-2">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">{{nombreLista}}</h3>
+					</div>
+					<div class="panel-body">
+						<ul dnd-list="lista" 
+							dnd-drop="callback({targetIndex: index, nombreListaDestino:nombreLista})">
+							<li ng-repeat="task in lista" 
+								dnd-draggable="null"
+								dnd-effect-allowed="move"
+								dnd-callback="onDrop(nombreLista, $index, nombreListaDestino, targetIndex)" 
+								ng-class="checkColor(task.prioridad)" 
+								ng-click="openUpdateTareaForm(task,nombreLista)">
+								{{task.nombre}} : ({{task.estimacion}})</li>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-show="!autenticado">Debe autenticarse!</div>

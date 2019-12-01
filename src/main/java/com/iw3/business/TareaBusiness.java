@@ -59,7 +59,7 @@ public class TareaBusiness implements ITareaBusiness{
 	}
 
 	@Override
-	public void crearTarea(Tarea tarea) throws BusinessException,TareaException {
+	public Tarea crearTarea(Tarea tarea) throws BusinessException,TareaException {
 		Optional<Lista> lista = repoListas.findById(tarea.getLista().getId());
 		if(!lista.isPresent())
 			throw new TareaException("No existe la lista.");
@@ -72,6 +72,7 @@ public class TareaBusiness implements ITareaBusiness{
 			tarea.setUltimaModificacion(new Date());
 			repo.save(tarea);
 			log.info("Se creo la tarea "+tarea.getJSON());
+			return tarea;
 		}catch (Exception e) {
 			log.error(e.getMessage());
 			throw new BusinessException(e);
@@ -79,7 +80,7 @@ public class TareaBusiness implements ITareaBusiness{
 	}
 	
 	@Override
-	public void updateTarea(Tarea tarea) throws BusinessException,TareaException,NotFoundException {
+	public Tarea updateTarea(Tarea tarea) throws BusinessException,TareaException,NotFoundException {
 		Optional<Tarea> opTarea = repo.findById(tarea.getId());
 		if(!opTarea.isPresent())
 			throw new NotFoundException("No existe la tarea a modificar");
@@ -99,6 +100,7 @@ public class TareaBusiness implements ITareaBusiness{
 			tarea.setUltimaModificacion(new Date());
 			repo.save(tarea);
 			log.info("Se actualizo la tarea "+tarea.getJSON());
+			return tarea;
 		}catch (Exception e) {
 			log.error(e.getMessage());
 			throw new BusinessException(e);

@@ -34,6 +34,7 @@ angular.module('iw3')
 	$scope.selectProyect = function(proyecto){
 		$localStorage.proyecto = proyecto;
 		$rootScope.relocate("/sprints");
+		delete $localStorage.sprint;
 	}
 	
 	

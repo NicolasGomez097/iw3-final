@@ -4,6 +4,14 @@ angular.module('iw3').factory('listService',function($http, URL_API_BASE){
 			return $http.get(URL_API_BASE+"listas?id_sprint="+idSprint);
 		},
 		
+		listOrder:function(idSprint,lista,campo,tipo) {
+			var url = URL_API_BASE+"listas/";
+			url += lista+"/order/" + campo+"/"+tipo;
+			url += "?id_sprint="+idSprint;
+			
+			return $http.get(url);
+		},
+		
 		listBacklog:function(idSprint) {
 			return $http.get(URL_API_BASE+"listas/backlog?id_sprint="+idSprint);
 		},

@@ -7,7 +7,10 @@ angular.module('iw3')
 		$rootScope.relocate("sprints");
 		
 	$scope.titulo="Tablero del sprint '" + $localStorage.sprint.nombre+"'";
-	$scope.busqueda={text:""};
+	$scope.orden = "none";
+	$scope.form={};
+	$scope.form.tipo = "asc";
+	
 	
 	$scope.listas = {
 			Backlog:[], 
@@ -15,6 +18,7 @@ angular.module('iw3')
 			"In Progress":[],
 			Waiting:[],
 			Done:[]};
+	
 	$scope.checkColor = function(prioridad){
 		if(prioridad == 'Alta'){
 			return 'redBackground';
@@ -102,11 +106,9 @@ angular.module('iw3')
 		return true;
     };
     
-    $scope.dropCallback = function(obj){
-    	console.log(obj);
-    }
-		
 	$scope.refresh=function() {
+		var promise;
+		
 		listService.list($localStorage.sprint.id).then(
 				function(resp){
 					$localStorage.id_backlog=resp.data[0].id;
@@ -120,8 +122,14 @@ angular.module('iw3')
 					}
 				}
 			);
+				
+		if($scope.orden == "none")
+			promise = listService.listBacklog($localStorage.sprint.id);
+		else
+			promise = listService.listOrder(
+					$localStorage.sprint.id,"backlog",$scope.orden,$scope.form.tipo);
 		
-		listService.listBacklog($localStorage.sprint.id).then(
+		promise.then(
 			function(resp){
 				$scope.listas.Backlog=resp.data;
 			},
@@ -130,8 +138,13 @@ angular.module('iw3')
 					Notification.error("No se pudo cargar la lista de backlog");
 			}
 		);
-		
-		listService.listToDo($localStorage.sprint.id).then(
+
+		if($scope.orden == "none")
+			promise = listService.listToDo($localStorage.sprint.id);
+		else
+			promise = listService.listOrder(
+					$localStorage.sprint.id,"to_do",$scope.orden,$scope.form.tipo);
+		promise.then(
 				function(resp){
 					$scope.listas["To Do"]=resp.data;
 				},
@@ -141,7 +154,13 @@ angular.module('iw3')
 				}
 			);
 		
-		listService.listInProgress($localStorage.sprint.id).then(
+		if($scope.orden == "none")
+			promise = listService.listInProgress($localStorage.sprint.id);
+		else
+			promise = listService.listOrder(
+					$localStorage.sprint.id,"in_progress",$scope.orden,$scope.form.tipo);
+		
+		promise.then(
 				function(resp){
 					$scope.listas["In Progress"]=resp.data;
 				},
@@ -151,7 +170,12 @@ angular.module('iw3')
 				}
 			);
 		
-		listService.listWaiting($localStorage.sprint.id).then(
+		if($scope.orden == "none")
+			promise = listService.listWaiting($localStorage.sprint.id);
+		else
+			promise = listService.listOrder(
+					$localStorage.sprint.id,"waiting",$scope.orden,$scope.form.tipo);
+		promise.then(
 				function(resp){
 					$scope.listas.Waiting=resp.data;
 				},
@@ -161,7 +185,13 @@ angular.module('iw3')
 				}
 			);
 		
-		listService.listDone($localStorage.sprint.id).then(
+		if($scope.orden == "none")
+			promise = listService.listDone($localStorage.sprint.id);
+		else
+			promise = listService.listOrder(
+					$localStorage.sprint.id,"done",$scope.orden,$scope.form.tipo);
+		promise.then(
+				
 				function(resp){
 					$scope.listas.Done=resp.data;
 				},
@@ -172,14 +202,17 @@ angular.module('iw3')
 			);
 	}
 	
-	$scope.openInsertTareaForm()=function(){
-		$scope.proy={};
-		$rootScope.openInsertTareaForm(true);
+	$scope.openInsertTareaForm=function(){
+		$rootScope.openModalTareaForm(true);
 	}
 	
-	$scope.openUpdateTareaForm=function(task) {
+	$scope.openUpdateTareaForm=function(task,nombreLista) {
+		if(nombreLista != "Backlog"){
+			Notification.error("Solo se puede modificar una tarea en el Backlog.");
+			return;
+		}
 		$rootScope.selectedTask = task;
-		$rootScope.openInsertTareaForm(false);
+		$rootScope.openModalTareaForm(false);
 	}
 		
 	$scope.refresh();

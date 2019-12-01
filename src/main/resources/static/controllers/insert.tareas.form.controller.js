@@ -28,9 +28,9 @@ angular.module('iw3')
 	}	
 	
 	$scope.closeModal = function(){
-		if($rootScope.InsertTareaOpen){
+		if($rootScope.modalTareaOpen){
 			$uibModalInstance.dismiss(true);
-			$rootScope.InsertTareaOpen = false;
+			$rootScope.modalTareaOpen = false;
 		}
 	}
 });

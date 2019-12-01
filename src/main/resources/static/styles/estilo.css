@@ -3,7 +3,7 @@ tbody > tr:hover{
 	cursor: pointer;
 }
 .redBackground{
-	background: #ff6961;
+	background: #ff6961A0;
 }
 .link{
 	color: blue;
@@ -12,7 +12,7 @@ tbody > tr:hover{
 	background: #ffb861;
 }
 .greenBackground{
-	background: #61ff69
+	background: #61ff69A0
 }
 .contenedor{
 	background-color: rgba(0,0,0,0.1);

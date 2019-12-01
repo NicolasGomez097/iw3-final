@@ -2,38 +2,28 @@ angular.module('iw3')
 .controller('updateTarea', function($scope, $rootScope, tareasService,Notification,$uibModalInstance, $localStorage){	
 	
 	$scope.tareaFormTitulo = $scope.SuccessBtnText ="Editar";
-	$scope.task ={nombre:$rootScope.selectedTask.nombre, id:$rootScope.selectedTask.id, lista:{},  prioridad:$rootScope.selectedTask.prioridad,
-			estimacion:$rootScope.selectedTask.estimacion};
+	$scope.task ={nombre:$rootScope.selectedTask.nombre, id:$rootScope.selectedTask.id, lista:{},  
+			prioridad:$rootScope.selectedTask.prioridad};
 	
+	if($rootScope.selectedTask.estimacion)
+		$scope.task.estimacion = ""+$rootScope.selectedTask.estimacion;
+	else
+		$scope.task.estimacion = "1";
 	
-/*	$scope.deleteTask = function($scope.task){
-		console.log(task)
-		tareasService.deleteTask($scope.task.id).then(
-				function(resp){
-					console.log(resp);
-					if(resp.status===201){
-						Notification.success("Se elimino con exito");
-					}
-				},
-				function(err){
-					Notification.error(err.headers("error"));
-				}
-		);
-		$scope.closeModal();
-		
-	}*/
 	$scope.success=function() {		
 		
 		if($scope.task.nombre == ""){
 			Notification.error("El nombre no puede ser vacio");
 			return;
 		}
-		console.log($scope.task);
+		
+		$scope.task.lista.id = $localStorage.id_backlog;
+		
 		tareasService.update($scope.task).then(
 			function(resp){
-				console.log(resp);
-				if(resp.status===201){
+				if(resp.status===200){
 					Notification.success("Se modifico con exito");
+					updateTarea();
 				}
 			},
 			function(err){
@@ -44,9 +34,14 @@ angular.module('iw3')
 	}	
 	
 	$scope.closeModal = function(){
-		if($rootScope.UpdateTareaOpen){
+		if($rootScope.modalTareaOpen){
 			$uibModalInstance.dismiss(true);
-			$rootScope.UpdateTareaOpen = false;
+			$rootScope.modalTareaOpen = false;
 		}
+	}
+	
+	var updateTarea = function(){
+		for(var clave in $rootScope.selectedTask)
+			$rootScope.selectedTask[clave] = $scope.task[clave];
 	}
 });

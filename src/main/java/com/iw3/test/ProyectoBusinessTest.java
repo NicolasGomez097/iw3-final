@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,51 +39,57 @@ public class ProyectoBusinessTest {
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
 
-    private static Proyecto proy1 = new Proyecto();
+    private static Proyecto proyTestUpdateFailure = new Proyecto();
+    private static Proyecto proyTestInsert = new Proyecto();;
+    private static Proyecto proyTestInsertFailure = new Proyecto();;
+    private static Proyecto proyTestUpdate = new Proyecto();
+    private static Proyecto proyTestNotFound= new Proyecto();
+    
+    private  boolean proy1Created = false;
 
     @BeforeClass
     public static void setup() throws BusinessException, ProyectoException {
-        proy1.setId(500);
-        proy1.setNombre("Proyecto_test");
-        Date date = new GregorianCalendar(2019, Calendar.DECEMBER, 1).getTime();
-        proy1.setFecha_creacion(date);
-
+        proyTestUpdateFailure.setNombre("Proyecto_test_update_failure");
+        proyTestInsert.setNombre("Proyecto_test_insert");
+        proyTestInsertFailure.setNombre("Proyecto_test_insert_failure");
+        proyTestUpdate.setNombre("Proyecto_test_update");
     }
 
 
     @Test
     public void testUpdateSuccess() throws  BusinessException, NotFoundException, ProyectoException  {
-        proyectoBusiness.crearProyecto(proy1);
+    	
+    	proyTestUpdate = proyectoBusiness.crearProyecto(proyTestUpdate);
     	String testName = "test";
-    	proy1.setNombre(testName);
-        assertEquals(testName, proyectoBusiness.updateProyecto(proy1).getNombre());
+    	proyTestUpdate.setNombre(testName);
+        assertEquals(testName, proyectoBusiness.updateProyecto(proyTestUpdate).getNombre());
     }
-    
+ 
     @Test
     public void testUpdateFailure() throws  BusinessException, NotFoundException, ProyectoException  {
-    	proyectoBusiness.crearProyecto(proy1);
-    	String testName = "test";
-    	proy1.setNombre(testName);
-    	testName= "Not_equal_test";
-        assertNotEquals(testName, proyectoBusiness.updateProyecto(proy1).getNombre());
+    	String testName = "test2";
+    	proyTestUpdateFailure = proyectoBusiness.crearProyecto(proyTestUpdateFailure);
+    	proyTestUpdateFailure.setNombre(testName);
+    	testName= "Not_equal_test_name";
+        assertNotEquals(testName, proyectoBusiness.updateProyecto(proyTestUpdateFailure).getNombre());
     }
     
     @Test
     public void testInsertSuccess() throws  BusinessException, NotFoundException, ProyectoException  {
-        assertEquals("Proyecto_test", proyectoBusiness.crearProyecto(proy1).getNombre());
+        assertEquals("Proyecto_test_insert", proyectoBusiness.crearProyecto(proyTestInsert).getNombre());
     }
-
+    
     @Test
     public void testInsertFailure() throws  BusinessException, NotFoundException, ProyectoException  {
-        assertNotEquals("Proyecto_test_not_equal", proyectoBusiness.crearProyecto(proy1).getNombre());
+        assertNotEquals("Proyecto_test_not_equal", proyectoBusiness.crearProyecto(proyTestInsertFailure).getNombre());
     }
 
-
+    
     @Test(expected = com.iw3.exeptions.NotFoundException.class)
     public void testLoadNotFoundException() throws  BusinessException, NotFoundException, ProyectoException  {
         int id = 128;
-        proy1.setId(id);
-        proyectoBusiness.updateProyecto(proy1);
+        proyTestNotFound.setId(id);
+        proyectoBusiness.updateProyecto(proyTestNotFound);
         expectedEx.expect(com.iw3.exeptions.NotFoundException.class);
         expectedEx.expectMessage("No existe el proyecto a modificar");
     }

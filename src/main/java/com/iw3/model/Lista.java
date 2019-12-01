@@ -2,6 +2,7 @@ package com.iw3.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Lista {
 	@ManyToOne()
 	private Sprint sprint;
 	
-	@OneToMany(mappedBy = "lista")
+	@OneToMany(mappedBy = "lista", cascade = CascadeType.REMOVE)
 	@JsonManagedReference
 	private List<Tarea> tareas;	
 	

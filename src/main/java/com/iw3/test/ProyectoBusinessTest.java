@@ -33,7 +33,7 @@ public class ProyectoBusinessTest {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public static ProyectoBusiness proyectoBusiness;
+    ProyectoBusiness proyectoBusiness;
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
@@ -46,12 +46,13 @@ public class ProyectoBusinessTest {
         proy1.setNombre("Proyecto_test");
         Date date = new GregorianCalendar(2019, Calendar.DECEMBER, 1).getTime();
         proy1.setFecha_creacion(date);
-        proyectoBusiness.crearProyecto(proy1);
+
     }
 
 
     @Test
     public void testUpdateSuccess() throws  BusinessException, NotFoundException, ProyectoException  {
+        proyectoBusiness.crearProyecto(proy1);
     	String testName = "test";
     	proy1.setNombre(testName);
         assertEquals(testName, proyectoBusiness.updateProyecto(proy1).getNombre());
@@ -59,6 +60,7 @@ public class ProyectoBusinessTest {
     
     @Test
     public void testUpdateFailure() throws  BusinessException, NotFoundException, ProyectoException  {
+    	proyectoBusiness.crearProyecto(proy1);
     	String testName = "test";
     	proy1.setNombre(testName);
     	testName= "Not_equal_test";

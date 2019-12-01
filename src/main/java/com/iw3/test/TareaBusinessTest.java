@@ -35,7 +35,7 @@ public class TareaBusinessTest {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    public static TareaBusiness tareaBusiness;
+    TareaBusiness tareaBusiness;
 
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
@@ -54,9 +54,8 @@ public class TareaBusinessTest {
         Lista lista = new Lista();
         lista.setNombre("backlog");
         tarea1.setLista(lista);
-        tareaBusiness.crearTarea(tarea1);
         
-        tarea2.setId(500);
+        tarea2.setId(501);
         tarea2.setEstimacion(5.0);
         tarea2.setNombre("Test_Tarea_Name");
         Date date2 = new GregorianCalendar(2019, Calendar.DECEMBER, 1).getTime();
@@ -69,6 +68,7 @@ public class TareaBusinessTest {
 	
     @Test
     public void testUpdateFailure() throws  BusinessException, NotFoundException, TareaException  {
+        tareaBusiness.crearTarea(tarea1);
     	String testName = "test";
     	tarea1.setNombre(testName);
     	testName= "Not_equal_test";
@@ -77,7 +77,7 @@ public class TareaBusinessTest {
     
     @Test
     public void testLoadSuccess() throws  BusinessException, NotFoundException  {
-        assertEquals("Test_Tarea_Name", tareaBusiness.obtenerTarea(500).getNombre());
+        assertEquals("Test_Tarea_Name", tareaBusiness.obtenerTarea(501).getNombre());
     }
 
     @Test(expected = com.iw3.exeptions.TareaException.class)

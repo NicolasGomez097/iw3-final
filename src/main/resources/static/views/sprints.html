@@ -38,9 +38,9 @@
 					<tr ng-repeat="s in data track by $index" ng-click="selectSprint(s)">
 						<td>{{s.id}}</td>
 						<td>{{s.nombre}}</td>
-						<td>{{s.fecha_inicio}}</td>
-						<td><button ng-click="openEditSprint(s)" class="btn btn-info ">Editar</button></td>
-						<td><button ng-click="eliminar(s)" class="btn btn-warning glyphicon glyphicon-remove"></button></td>
+						<td>{{s.fecha_inicio | date: "dd.MM.y hh:mm"}}</td>
+						<!-- <td><button ng-click="openEditSprint(s)" class="btn btn-info ">Editar</button></td>
+						<td><button ng-click="eliminar(s)" class="btn btn-warning glyphicon glyphicon-remove"></button></td> -->
 					</tr>
 				</tbody>
 			</table>

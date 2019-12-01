@@ -47,7 +47,7 @@
 								dnd-callback="onDrop(nombreLista, $index, nombreListaDestino, targetIndex)" 
 								ng-class="checkColor(task.prioridad)" 
 								ng-click="openUpdateTareaForm(task,nombreLista)">
-								{{task.nombre}} : ({{task.estimacion}})</li>
+								{{task.nombre}} : ({{task.estimacion}})</br>{{task.fechaCreacion | date: "dd.MM.y hh:mm"}}</li>
 					</div>
 				</div>
 			</div>

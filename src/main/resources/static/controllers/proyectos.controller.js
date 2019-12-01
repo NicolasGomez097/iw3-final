@@ -37,10 +37,8 @@ angular.module('iw3')
 		delete $localStorage.sprint;
 	}
 	
-	
-	
 			
-	/*$scope.eliminar=function(proy) {
+	$scope.eliminar=function(proy) {
 		SweetAlert.swal({
 			  title: "Eliminar proyecto",
 			  text: "Está seguro que desea eliminar el proyecto <strong>"+proy.nombre+"</strong>?",
@@ -65,6 +63,6 @@ angular.module('iw3')
 					);
 				}
 			});
-	};*/
-	
+	};
+
 }); //End main controller

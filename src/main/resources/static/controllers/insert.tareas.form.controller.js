@@ -17,6 +17,8 @@ angular.module('iw3')
 			function(resp){
 				if(resp.status===201){
 					Notification.success("Se inserto con exito");
+					$scope.task.id = resp.headers("id_tarea");
+					$rootScope.actualListInsert.push($scope.task);
 				}
 			},
 			function(err){

@@ -12,6 +12,7 @@ angular.module('iw3')
 		proyectosService.list().then(
 			function(resp){
 				$scope.data=resp.data;
+				$rootScope.actualListInsert = $scope.data;
 			},
 			function(err){
 				Notification.error("No se pudo cargar la lista de proyectos");

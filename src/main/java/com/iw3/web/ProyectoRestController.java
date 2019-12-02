@@ -34,7 +34,9 @@ public class ProyectoRestController {
 		try {
 			proyectoBusiness.esValido(proyecto);
 			proyectoBusiness.crearProyecto(proyecto);
-			return new ResponseEntity<String>(HttpStatus.CREATED);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("id_proyecto", proyecto.getId().toString());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.CREATED);
 		}catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (ProyectoException e) {

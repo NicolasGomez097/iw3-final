@@ -53,7 +53,9 @@ public class TareaRestController {
 		try {		
 			tareaBusiness.esValido(tarea);
 			tareaBusiness.crearTarea(tarea);
-			return new ResponseEntity<String>(HttpStatus.CREATED);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("id_tarea", tarea.getId().toString());
+			return new ResponseEntity<String>(responseHeaders,HttpStatus.CREATED);
 		}catch (BusinessException e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}catch (TareaException e) {

@@ -107,6 +107,8 @@ public class ListaBusiness implements IListaBusiness{
 		
 		if(lista.getSprint() == null)
 			throw new ListaException("No se tiene un sprint asignado.");
+		if(lista.getSprint().getId() == null)
+			throw new ListaException("El id del sprint no puede ser nulo");
 	}
 	
 

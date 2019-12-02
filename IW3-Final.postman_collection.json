@@ -88,12 +88,12 @@
 						"header": [
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NTA2OTA3NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzUwNTEwNzV9.Pq8PGO30VJzwoG7BNy_kWHbFwTrnTX1t8S18vqBggcYRowxSkYJzLUp6_eRrko3eHzQMMzmVoD_tu8xY3ZGR4g",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:8080/api/v1/sprints?=",
+							"raw": "localhost:8080/api/v1/sprints?id_proyecto=1",
 							"host": [
 								"localhost"
 							],
@@ -105,8 +105,8 @@
 							],
 							"query": [
 								{
-									"key": "",
-									"value": ""
+									"key": "id_proyecto",
+									"value": "1"
 								}
 							]
 						}
@@ -170,12 +170,12 @@
 								"header": [
 									{
 										"key": "JWT-HEADER",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NTA2OTA3NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzUwNTEwNzV9.Pq8PGO30VJzwoG7BNy_kWHbFwTrnTX1t8S18vqBggcYRowxSkYJzLUp6_eRrko3eHzQMMzmVoD_tu8xY3ZGR4g",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "localhost:8080/api/v1/listas?id_sprint=1",
+									"raw": "localhost:8080/api/v1/listas?id_sprint=3",
 									"host": [
 										"localhost"
 									],
@@ -187,13 +187,13 @@
 									],
 									"query": [
 										{
-											"key": "id_sprint",
-											"value": "1"
-										},
-										{
 											"key": "",
 											"value": "",
 											"disabled": true
+										},
+										{
+											"key": "id_sprint",
+											"value": "3"
 										}
 									]
 								}
@@ -207,7 +207,7 @@
 								"header": [
 									{
 										"key": "JWT-HEADER",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NTA2OTA3NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzUwNTEwNzV9.Pq8PGO30VJzwoG7BNy_kWHbFwTrnTX1t8S18vqBggcYRowxSkYJzLUp6_eRrko3eHzQMMzmVoD_tu8xY3ZGR4g",
 										"type": "text"
 									}
 								],
@@ -426,7 +426,7 @@
 									},
 									{
 										"key": "JWT-HEADER",
-										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+										"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDk5ODM1NywidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ5ODAzNTd9.6Rg59F9YfEiWgdWkKlPzh5wuqp0bcm-Rxga5cRfsU3C82z3dxpUcUUKJxjq0p4C7Oi1UmdECr5JDrKexS4HXJA",
 										"type": "text"
 									}
 								],
@@ -667,13 +667,13 @@
 							},
 							{
 								"key": "JWT-HEADER",
-								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDg3Nzk0NSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ4NTk5NDV9.MOM2XvFk2JECwB7ZC3s4D22HT_o9O0Qgcr6ykjPAIsCmpFrrm8ZwpJCO_OfntAZkG37B2UJMJasJj4rU0huGzA",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU3NDk5OTM3MSwidmVyc2lvbiI6MS4wLCJpYXQiOjE1NzQ5ODEzNzF9.FL4c1o91ewJHDFiWhkHK3hlTEw3XYjzvvp5o1flECMT8z41xhj89EEM1qvquyzQqaR3bE09I0wla6lAxNPMQJA",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1}\n}",
+							"raw": "{\n\t\"nombre\":\"crear api2\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -714,7 +714,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":1,\n\t\"nombre\":\"crear api\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1},\n\t\"estimacion\": 3.0\n}",
+							"raw": "{\n\t\"id\":5,\n\t\"nombre\":\"Move\",\n\t\"prioridad\":\"Baja\",\n\t\"lista\":{\"id\":1},\n\t\"estimacion\": 3.0\n}",
 							"options": {
 								"raw": {
 									"language": "json"

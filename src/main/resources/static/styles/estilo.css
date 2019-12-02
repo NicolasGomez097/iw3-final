@@ -9,10 +9,10 @@ tbody > tr:hover{
 	color: blue;
 }
 .yellowBackground{
-	background: #ffb861;
+	background: #ffff0050;
 }
 .greenBackground{
-	background: #61ff69A0
+	background: #61ff6980
 }
 .contenedor{
 	background-color: rgba(0,0,0,0.1);

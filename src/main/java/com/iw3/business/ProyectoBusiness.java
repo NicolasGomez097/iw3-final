@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iw3.exeptions.BusinessException;
+import com.iw3.exeptions.NotFoundException;
 import com.iw3.exeptions.ProyectoException;
 import com.iw3.model.Proyecto;
 import com.iw3.repository.ProyectoRepository;
@@ -31,7 +32,7 @@ public class ProyectoBusiness implements IProyectoBusiness{
 	}
 
 	@Override
-	public void crearProyecto(Proyecto proyecto) throws BusinessException,ProyectoException {
+	public Proyecto crearProyecto(Proyecto proyecto) throws BusinessException,ProyectoException {
 		Optional<Proyecto> opProyecto = repo.findByNombre(proyecto.getNombre());
 		if(opProyecto.isPresent())
 			throw new ProyectoException("Ya existe este proyecto");
@@ -40,6 +41,7 @@ public class ProyectoBusiness implements IProyectoBusiness{
 			proyecto.setFecha_creacion(new Date());	
 			repo.save(proyecto);
 			log.info("Se creo el proyecto "+proyecto.getJSON());
+			return proyecto;
 		}catch (Exception e) {
 			log.error(e.getMessage());
 			throw new BusinessException(e);
@@ -54,5 +56,44 @@ public class ProyectoBusiness implements IProyectoBusiness{
 			log.error(e.getMessage(), e);
 			throw new BusinessException(e);
 		}
+	}
+
+	@Override
+	public Proyecto updateProyecto(Proyecto proyecto) throws BusinessException, NotFoundException, ProyectoException {
+		
+		Optional<Proyecto> opProyecto = repo.findById(proyecto.getId());
+		if(!opProyecto.isPresent())
+			throw new NotFoundException("No existe el proyecto a modificar");
+			
+		try {	
+			repo.save(proyecto);
+			log.info("Se actualizo el proyecto "+proyecto.getJSON());
+			return proyecto;	
+		}catch (Exception e) {
+			log.error(e.getMessage());
+			throw new BusinessException(e);
+		}
+			
+		
+	}
+
+	@Override
+	public void remove(int idProyecto) throws BusinessException, NotFoundException, ProyectoException {
+		Optional<Proyecto> op = null;
+
+		try {
+			op = repo.findById(idProyecto);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+
+		if (!op.isPresent())
+			throw new NotFoundException("No se encuentra el producto con id=" + idProyecto);
+		try {
+			repo.deleteById(idProyecto);
+		} catch (Exception e) {
+			throw new BusinessException(e);
+		}
+		
 	}	
 }

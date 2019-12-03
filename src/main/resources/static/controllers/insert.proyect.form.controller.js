@@ -12,9 +12,10 @@ angular.module('iw3')
 				
 		proyectosService.insert($scope.proy).then(
 			function(resp){
-				console.log(resp);
 				if(resp.status===201){
 					Notification.success("Se inserto con exito");
+					$scope.proy.id = resp.headers("id_proyecto");
+					$rootScope.actualListInsert.push($scope.proy);
 				}
 			},
 			function(err){

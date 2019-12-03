@@ -117,8 +117,18 @@ angular.module('iw3')
 					if(err.status == 404){
 						var lista = {nombre:'backlog',sprint:{}};
 						lista.sprint.id=$localStorage.sprint.id;
-						console.log(lista);
-						listService.insert(lista);
+						listService.insert(lista).then(
+								function(resp) {
+									if(resp.status == 201){
+										$localStorage.id_backlog=resp.headers("id_lista");
+										Notification.success("Se creo la lista backlog");
+									}
+								},
+								function(error) {
+									if(error.status == 400)
+										Notification.error(error.headers("error"));
+								}
+						);
 					}
 				}
 			);
@@ -132,6 +142,7 @@ angular.module('iw3')
 		promise.then(
 			function(resp){
 				$scope.listas.Backlog=resp.data;
+				$rootScope.actualListInsert = $scope.listas.Backlog;
 			},
 			function(err){
 				if(err.status != 404)

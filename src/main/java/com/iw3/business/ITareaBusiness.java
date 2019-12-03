@@ -10,7 +10,7 @@ import com.iw3.model.Tarea;
 public interface ITareaBusiness {
 	public void esValido(Tarea tarea) throws TareaException;
 	public List<Tarea> getLista() throws BusinessException;
-	public void crearTarea(Tarea tarea) throws BusinessException,TareaException;
-	public void updateTarea(Tarea tarea) throws BusinessException, TareaException,NotFoundException;
+	public Tarea crearTarea(Tarea tarea) throws BusinessException,TareaException;
+	public Tarea updateTarea(Tarea tarea) throws BusinessException, TareaException,NotFoundException;
 	public Tarea obtenerTarea(Integer id) throws NotFoundException,BusinessException;
 }

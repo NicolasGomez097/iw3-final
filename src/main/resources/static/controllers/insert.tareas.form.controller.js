@@ -15,9 +15,10 @@ angular.module('iw3')
 				
 		tareasService.insert($scope.task).then(
 			function(resp){
-				console.log(resp);
 				if(resp.status===201){
 					Notification.success("Se inserto con exito");
+					$scope.task.id = resp.headers("id_tarea");
+					$rootScope.actualListInsert.push($scope.task);
 				}
 			},
 			function(err){

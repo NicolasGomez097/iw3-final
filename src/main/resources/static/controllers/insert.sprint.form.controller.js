@@ -17,6 +17,8 @@ angular.module('iw3')
 			function(resp){
 				if(resp.status===201){
 					Notification.success("Se inserto con exito");
+					$scope.sprint.id = resp.headers("id_sprint");
+					$rootScope.actualListInsert.push($scope.sprint);
 				}
 			},
 			function(err){

@@ -126,4 +126,6 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 		return $localStorage.sprint
 	}
 	
+	$rootScope.actualListInsert = null;
+	
 });

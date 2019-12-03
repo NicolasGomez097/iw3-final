@@ -3,6 +3,7 @@ package com.iw3.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Sprint {
 	@ManyToOne
 	private Proyecto proyecto;
 	
-	@OneToMany(mappedBy = "sprint")
+	@OneToMany(mappedBy = "sprint", cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Lista> listas;
 	

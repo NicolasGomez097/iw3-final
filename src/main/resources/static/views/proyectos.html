@@ -37,7 +37,7 @@
 					<tr ng-repeat="p in data track by $index" >
 						<td>{{p.id}}</td>
 						<td class="link" ng-click="selectProyect(p)">{{p.nombre}}</td>
-						<td>{{p.fecha_creacion}}</td>
+						<td>{{p.fecha_creacion | date: "dd.MM.y hh:mm"}}</td>
 						<td>
 						<button ng-click="openUpdateForm(p)" class="btn btn-info ">Editar</button>
 						</td>

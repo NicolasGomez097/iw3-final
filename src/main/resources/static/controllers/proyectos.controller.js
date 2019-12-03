@@ -12,6 +12,7 @@ angular.module('iw3')
 		proyectosService.list().then(
 			function(resp){
 				$scope.data=resp.data;
+				$rootScope.actualListInsert = $scope.data;
 			},
 			function(err){
 				Notification.error("No se pudo cargar la lista de proyectos");
@@ -37,10 +38,8 @@ angular.module('iw3')
 		delete $localStorage.sprint;
 	}
 	
-	
-	
 			
-	/*$scope.eliminar=function(proy) {
+	$scope.eliminar=function(proy) {
 		SweetAlert.swal({
 			  title: "Eliminar proyecto",
 			  text: "Está seguro que desea eliminar el proyecto <strong>"+proy.nombre+"</strong>?",
@@ -65,6 +64,6 @@ angular.module('iw3')
 					);
 				}
 			});
-	};*/
-	
+	};
+
 }); //End main controller

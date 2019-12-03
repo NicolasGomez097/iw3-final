@@ -36,6 +36,7 @@ public class ListaRestController {
 			listaBusiness.crearLista(lista);
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.set("location", Constantes.URL_TAREA + "/" + lista.getNombre());
+			responseHeaders.set("id_lista", ""+lista.getId());
 			return new ResponseEntity<String>(responseHeaders,HttpStatus.CREATED);
 		}catch (BusinessException e) {
 			e.printStackTrace();

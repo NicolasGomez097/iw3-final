@@ -117,6 +117,21 @@ app.run(function($rootScope, $location, $uibModal, coreService, $localStorage) {
 			});
 		}
 	};
+	
+	$rootScope.changeUserInformationOpen= false;
+	$rootScope.openChangeUserInformationForm = function() {		
+		if (!$rootScope.changeUserInformationOpen) {
+			$rootScope.changeUserInformationOpen = true;
+			$uibModal.open({
+				animation : true,
+				backdrop : 'static',
+				keyboard : false,
+				templateUrl : 'views/userInformationForm.html',
+				controller : 'updateUser',
+				size : 'md'
+			});
+		}
+	};
 		
 	$rootScope.isProyectSelected = function(){
 		return $localStorage.proyecto

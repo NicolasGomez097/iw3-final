@@ -2,6 +2,10 @@ tbody > tr:hover{
 	background-color: rgba(0,0,0,0.2);
 	cursor: pointer;
 }
+
+.title-label{
+	text-align: center;	
+}
 .redBackground{
 	background: #ff6961A0;
 }

@@ -39,6 +39,7 @@ public class Usuario implements UserDetails {
 	@Column(length = 250, unique = true, nullable = false)
 	private String email;
 
+	private Double version;
 	private String firstName;
 	private String lastName;
 
@@ -158,4 +159,14 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return enabled;
 	}
+
+	public Double getVersion() {
+		return version;
+	}
+
+	public void setVersion(Double version) {
+		this.version = version;
+	}
+	
+	
 }

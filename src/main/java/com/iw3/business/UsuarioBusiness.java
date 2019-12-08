@@ -62,4 +62,23 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 		return valid;
 	}
 
+	@Override
+	public Usuario updateUsuario(Usuario usuario) throws BusinessException, NotFoundException{
+		 
+		Optional<Usuario> op;
+		
+		try {
+			op = usuarioDAO.findByUsername(usuario.getUsername());
+			if(!op.isPresent())
+				throw new NotFoundException("No se encuentra el usuario con username="+usuario.getUsername());
+			
+			usuarioDAO.save(usuario);
+			log.info("Se actualizo el usuario "+usuario);
+			return usuario;	
+		}catch (Exception e) {
+			log.error(e.getMessage());
+			throw new BusinessException(e);
+		}
+	}
+
 }

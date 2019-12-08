@@ -15,21 +15,24 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.iw3.business.UsuarioBusiness;
+import com.iw3.exeptions.NotFoundException;
 import com.iw3.util.JwtTokenUtil;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-	
+	private UsuarioBusiness usuarioBO ;
 	
 	public JWTAuthenticationFilter(
 			UserDetailsService userDetailsService,
-			JwtTokenUtil jwtTokenUtil) {
+			JwtTokenUtil jwtTokenUtil, UsuarioBusiness usuarioBO) {
 		
 		super();
 		this.userDetailsService = userDetailsService;
 		this.jwtTokenUtil = jwtTokenUtil;
+		this.usuarioBO = usuarioBO;
 	}
 		
 	private JwtTokenUtil jwtTokenUtil;
@@ -49,16 +52,17 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 		if(jwtToken == null)
 			jwtToken = request.getParameter(AUTH_JWT_PARAMETER);
 			
-					
+				
 		if (jwtToken != null) {
 			try {
-				if(!jwtTokenUtil.isValidVersion(jwtToken)) {
+				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+				if(jwtTokenUtil.getVersion(jwtToken)!= usuarioBO.load(username).getVersion() ) {
 					log.error("El token JWT es de una version antigua.");
 					chain.doFilter(request, response);
 					return;
 				}					
 				
-				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+				
 			} catch (IllegalArgumentException e) {
 				log.error("No se pudo obtener el token.");
 				chain.doFilter(request, response);
@@ -67,6 +71,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 				log.error("El token JWT expiro");
 				chain.doFilter(request, response);
 				return;
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				log.error(e.getMessage());
 			}
 		} 
 		

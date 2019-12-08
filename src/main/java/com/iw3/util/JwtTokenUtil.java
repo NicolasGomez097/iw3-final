@@ -22,9 +22,6 @@ public class JwtTokenUtil implements Serializable {
 	@Value("${jwt.secret:secret-key}")
 	private String secret;
 	
-	@Value("${jwt.token.version:1.0}")
-	private Double VERSION;
-	
 	/**
 	 * Devuelve el nombre de usuario a partir del token
 	 * @param token Es el token del cual se extraera el usuario.
@@ -64,9 +61,9 @@ public class JwtTokenUtil implements Serializable {
 	 * Generar un token para el usuario.
 	 * @param userDetails Es el UserDetails del usuario.
 	 */
-	public String generateToken(String username) {
+	public String generateToken(String username, Integer version) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put(CLAIM_VERSION, VERSION);		
+		claims.put(CLAIM_VERSION, version);		
 		return doGenerateToken(claims, username);
 	}
 
@@ -75,20 +72,10 @@ public class JwtTokenUtil implements Serializable {
 	 * @param token Es el token del cual se extraera la version.
 	 * @return La verion del token.
 	 */
-	public Double getVersion(String token) {
-		return (Double)getAllClaimsFromToken(token).get(CLAIM_VERSION);
+	public Integer getVersion(String token) {
+		return (Integer)getAllClaimsFromToken(token).get(CLAIM_VERSION);
 	}
 	
-	/**
-	 * Comprueba que el token tenga una version valida.
-	 * @param token Es el token del cual se extraera la version.
-	 * @return La verion del token.
-	 */
-	public boolean isValidVersion(String token) {
-		int actualVersion = VERSION.intValue();
-		int tokenVerion = getVersion(token).intValue();
-		return actualVersion == tokenVerion;
-	}
 	
 	private String doGenerateToken(Map<String, Object> claims, String subject) {
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))

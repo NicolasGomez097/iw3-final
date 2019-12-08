@@ -6,8 +6,8 @@ angular.module('iw3')
 	
 	$scope.data=[];
 	
-	$scope.user={name:"", password:"" , passwordConfirmation:""};
-	$scope.user.name= $localStorage.userdata.name;
+	$scope.user={username:"", password:"" , passwordConfirmation:""};
+	$scope.user.username= $localStorage.userdata.name;
 	
 	$scope.updateUser=function(usuario) {
 		if(usuario.password!=usuario.passwordConfirmed){

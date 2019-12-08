@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.iw3.business.UsuarioBusiness;
 import com.iw3.filtros.JWTAuthenticationFilter;
 import com.iw3.util.JwtTokenUtil;
 
@@ -57,10 +58,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
-	
+	@Autowired
+	private UsuarioBusiness usuarioBO;
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.addFilterAfter(new JWTAuthenticationFilter(userDetailService,jwtTokenUtil),
+		http.addFilterAfter(new JWTAuthenticationFilter(userDetailService,jwtTokenUtil,usuarioBO),
 				UsernamePasswordAuthenticationFilter.class);
 		http.httpBasic();
 		http.authorizeRequests().antMatchers("/api/v1/**").authenticated();

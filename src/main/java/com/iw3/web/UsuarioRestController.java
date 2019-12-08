@@ -1,25 +1,16 @@
 package com.iw3.web;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iw3.business.IProyectoBusiness;
 import com.iw3.business.IUsuarioBusiness;
 import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.NotFoundException;
-import com.iw3.exeptions.ProyectoException;
-import com.iw3.model.Proyecto;
 import com.iw3.model.Usuario;
 import com.iw3.util.Constantes;
 

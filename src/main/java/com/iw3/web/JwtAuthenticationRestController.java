@@ -30,8 +30,11 @@ public class JwtAuthenticationRestController {
 	@PostMapping(value = "/loginJwt")
 	public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request){
 		Boolean isValid;
+		Integer version;
+		
 		try{
 			isValid = usuarioBusiness.isValid(request.getName(), request.getPassword());
+			version = usuarioBusiness.load(request.getName()).getVersion();
 		}catch (NotFoundException e) {
 			return new ResponseEntity<JwtResponse>(HttpStatus.UNAUTHORIZED);
 		}catch (BusinessException e) {
@@ -41,7 +44,7 @@ public class JwtAuthenticationRestController {
 		if(!isValid)
 			return new ResponseEntity<JwtResponse>(HttpStatus.UNAUTHORIZED);
 		
-		final String token = jwtTokenUtil.generateToken(request.getName());
+		final String token = jwtTokenUtil.generateToken(request.getName(),version);
 		JwtResponse response = new JwtResponse(request.getName(), token);
 		
 		return new ResponseEntity<JwtResponse>(response,HttpStatus.OK);

@@ -39,7 +39,7 @@ public class Usuario implements UserDetails {
 	@Column(length = 250, unique = true, nullable = false)
 	private String email;
 
-	private Double version;
+	private Integer version;
 	private String firstName;
 	private String lastName;
 
@@ -160,11 +160,11 @@ public class Usuario implements UserDetails {
 		return enabled;
 	}
 
-	public Double getVersion() {
+	public Integer getVersion() {
 		return version;
 	}
 
-	public void setVersion(Double version) {
+	public void setVersion(Integer version) {
 		this.version = version;
 	}
 	

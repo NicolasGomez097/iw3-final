@@ -73,11 +73,9 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 			if(!op.isPresent())
 				throw new NotFoundException("No se encuentra el usuario con username="+usuario.getUsername());
 			if(op.get().getPassword() != usuario.getPassword()) {
-				jwtTokenUtil = new JwtTokenUtil();
-				usuario.setVersion(usuario.getVersion()+1);
-				jwtTokenUtil.generateToken(usuario.getUsername());
+				op.get().setVersion(op.get().getVersion()+1);
 			}
-			usuarioDAO.save(usuario);
+			usuarioDAO.save(op.get());
 			log.info("Se actualizo el usuario "+usuario);
 			return usuario;	
 		}catch (Exception e) {

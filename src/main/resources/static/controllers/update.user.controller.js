@@ -14,7 +14,7 @@ angular.module('iw3')
 			Notification.error("El password ingresado en ambos campos no coincide");
 		}
 		else{
-			usuarioService.update(usuario).then{
+			usuarioService.update(usuario).then(
 				function(resp){
 					if(resp.status===200){
 						Notification.success("Se actualizó con exito");
@@ -27,7 +27,7 @@ angular.module('iw3')
 			$scope.closeModal();
 			}
 		}
-	}
+	
 	
 	$scope.closeModal = function(){
 		if($rootScope.changeInformationOpen){

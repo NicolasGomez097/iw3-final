@@ -13,13 +13,14 @@ import com.iw3.exeptions.BusinessException;
 import com.iw3.exeptions.NotFoundException;
 import com.iw3.model.Usuario;
 import com.iw3.repository.UsuarioRepository;
+import com.iw3.util.JwtTokenUtil;
 
 
 @Service
 public class UsuarioBusiness implements IUsuarioBusiness {
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-
+	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
 	private UsuarioRepository usuarioDAO;
@@ -71,7 +72,11 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 			op = usuarioDAO.findByUsername(usuario.getUsername());
 			if(!op.isPresent())
 				throw new NotFoundException("No se encuentra el usuario con username="+usuario.getUsername());
-			
+			if(op.get().getPassword() != usuario.getPassword()) {
+				jwtTokenUtil = new JwtTokenUtil();
+				usuario.setVersion(usuario.getVersion()+1);
+				jwtTokenUtil.generateToken(usuario.getUsername());
+			}
 			usuarioDAO.save(usuario);
 			log.info("Se actualizo el usuario "+usuario);
 			return usuario;	

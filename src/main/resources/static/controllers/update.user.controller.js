@@ -10,7 +10,7 @@ angular.module('iw3')
 	$scope.user.name= $localStorage.userdata.name;
 	
 	$scope.updateUser=function(usuario) {
-		if(usuario.password!=usuario.passwordConfirmation){
+		if(usuario.password!=usuario.passwordConfirmed){
 			Notification.error("El password ingresado en ambos campos no coincide");
 		}
 		else{

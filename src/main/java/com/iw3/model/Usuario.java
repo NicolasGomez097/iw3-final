@@ -167,6 +167,4 @@ public class Usuario implements UserDetails {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-	
-	
 }

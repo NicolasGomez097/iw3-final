@@ -2,7 +2,7 @@ angular.module('iw3')
 
 .controller('updateUser', function($scope, $rootScope, 
 		usuarioService,SweetAlert,Notification,
-		$localStorage){
+		$localStorage,$uibModalInstance){
 	
 	$scope.data=[];
 	
@@ -30,9 +30,9 @@ angular.module('iw3')
 	
 	
 	$scope.closeModal = function(){
-		if($rootScope.changeInformationOpen){
+		if($rootScope.changeUserInformationOpen){
 			$uibModalInstance.dismiss(true);
-			$rootScope.changeInformationOpen = false;
+			$rootScope.changeUserInformationOpen = false;
 		}
 	}
 		

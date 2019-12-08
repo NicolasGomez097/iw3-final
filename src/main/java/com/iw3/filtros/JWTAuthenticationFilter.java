@@ -56,13 +56,13 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 		if (jwtToken != null) {
 			try {
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-				if(jwtTokenUtil.getVersion(jwtToken)!= usuarioBO.load(username).getVersion() ) {
+				Integer verToken = jwtTokenUtil.getVersion(jwtToken);
+				Integer verUser = usuarioBO.load(username).getVersion();
+				if(!verToken.equals(verUser)) {
 					log.error("El token JWT es de una version antigua.");
 					chain.doFilter(request, response);
 					return;
-				}					
-				
-				
+				}
 			} catch (IllegalArgumentException e) {
 				log.error("No se pudo obtener el token.");
 				chain.doFilter(request, response);

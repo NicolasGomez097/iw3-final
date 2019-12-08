@@ -1,0 +1,31 @@
+
+<div class="modal-header">
+	<h3 class="modal-title">{{title}}</h3>
+</div>
+<form class="form-horizontal">
+	<fieldset>
+		<div class="modal-body">
+			<label class="title-label" >{{user.name}}</label>
+			<div class="form-group">
+				<label class="col-md-4 control-label">Clave</label>
+				<div class="col-md-8">
+					<input type="password" class="form-control" placeholder="Clave Nueva" ng-model="user.password"
+						required autofocus>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">Confirmar Clave</label>
+				<div class="col-md-8">
+					<input type="password" class="form-control" placeholder="Confirmar Clave"
+						ng-model="user.passwordConfirmed" required>
+				</div>
+				
+			</div>
+		</div>
+		
+	</fieldset>
+</form>
+<div class="modal-footer">
+			<button class="btn btn-primary" type="submit" ng-click="updateUser(user)">Confirmar Cambio</button>
+		</div>

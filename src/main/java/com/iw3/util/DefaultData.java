@@ -34,6 +34,7 @@ public class DefaultData {
 			r.setEmail("admin@alumnos.iua.edu.ar");
 			r.setPassword(passwordEncoder.encode("admin"));
 			r.setEnabled(true);
+			r.setVersion(1);
 			r.setAccountNonExpired(true);
 			r.setAccountNonLocked(true);
 			r.setCredentialsNonExpired(true);

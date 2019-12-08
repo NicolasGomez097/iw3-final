@@ -8,4 +8,5 @@ public interface IUsuarioBusiness {
 
 	public Usuario load(String username) throws BusinessException, NotFoundException;
 	public boolean isValid(String username,String password) throws BusinessException, NotFoundException;
+	public Usuario updateUsuario(Usuario usuario) throws BusinessException, NotFoundException;
 }

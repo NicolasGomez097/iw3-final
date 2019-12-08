@@ -39,6 +39,7 @@ public class Usuario implements UserDetails {
 	@Column(length = 250, unique = true, nullable = false)
 	private String email;
 
+	private Integer version;
 	private String firstName;
 	private String lastName;
 
@@ -157,5 +158,13 @@ public class Usuario implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return enabled;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 }

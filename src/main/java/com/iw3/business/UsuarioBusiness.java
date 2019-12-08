@@ -20,7 +20,6 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
-
 	@Autowired
 	private UsuarioRepository usuarioDAO;
 	
@@ -60,6 +59,31 @@ public class UsuarioBusiness implements IUsuarioBusiness {
 			throw new BusinessException(e);
 		}
 		return valid;
+	}
+
+	@Override
+	public Usuario updateUsuario(Usuario usuario) throws BusinessException, NotFoundException{
+		 
+		Optional<Usuario> op;
+		
+		try {
+			op = usuarioDAO.findByUsername(usuario.getUsername());
+			if(!op.isPresent())
+				throw new NotFoundException("No se encuentra el usuario con username="+usuario.getUsername());
+			
+			Boolean samePassword = passwordEncoder.matches(usuario.getPassword(),op.get().getPassword());
+			if(!samePassword) {
+				op.get().setVersion(op.get().getVersion()+1);
+				op.get().setPassword(passwordEncoder.encode(usuario.getPassword()));
+			}
+
+			usuarioDAO.save(op.get());
+			log.info("Se actualizo el usuario "+usuario);
+			return usuario;	
+		}catch (Exception e) {
+			log.error(e.getMessage());
+			throw new BusinessException(e);
+		}
 	}
 
 }

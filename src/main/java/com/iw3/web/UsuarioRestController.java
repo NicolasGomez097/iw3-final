@@ -3,9 +3,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iw3.business.IUsuarioBusiness;
@@ -32,6 +34,20 @@ public class UsuarioRestController {
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.set("error", e.getMessage());
 			return new ResponseEntity<String>(responseHeaders,HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping("")
+	public ResponseEntity<Usuario> getUsuario(@RequestParam(name = "username") String usuario) {
+		try {
+			Usuario user = usuarioBusiness.load(usuario);
+			return new ResponseEntity<Usuario>(user,HttpStatus.OK);
+		}catch (BusinessException e) {
+			return new ResponseEntity<Usuario>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}catch (NotFoundException e) {
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.set("error", e.getMessage());
+			return new ResponseEntity<Usuario>(responseHeaders,HttpStatus.NOT_FOUND);
 		}
 	}
 	

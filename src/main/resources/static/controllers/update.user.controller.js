@@ -4,8 +4,6 @@ angular.module('iw3')
 		usuarioService,SweetAlert,Notification,
 		$localStorage,$uibModalInstance){
 	
-	$scope.data=[];
-	
 	$scope.user={username:"", password:"" , passwordConfirmation:""};
 	$scope.user.username= $localStorage.userdata.name;
 	
@@ -25,8 +23,8 @@ angular.module('iw3')
 				function(err){}
 			);
 			$scope.closeModal();
-			}
 		}
+	}
 	
 	
 	$scope.closeModal = function(){

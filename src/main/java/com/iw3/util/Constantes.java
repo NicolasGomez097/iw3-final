@@ -8,5 +8,5 @@ public class Constantes {
 	public static final String URL_LISTA = URL_MAIN+"/listas";
 	public static final String URL_TAREA = URL_MAIN+"/tareas";	
 	public static final String URL_PROYECTO = URL_MAIN+"/proyectos";	
-	public static final String URL_USUARIO = URL_MAIN+"/usuario";
+	public static final String URL_USUARIO = URL_MAIN+"/usuarios";
 }

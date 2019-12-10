@@ -3,7 +3,7 @@ angular.module('iw3')
 .controller(
 		'main',
 		function($scope) {
-			$scope.titulo = "Main";
+			$scope.titulo = "Final IW3";
 
 
 		}); // End main controller

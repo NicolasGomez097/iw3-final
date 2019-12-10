@@ -13,8 +13,8 @@ angular.module('iw3')
 	$routeProvider
 	
 	.when('/',{
-		templateUrl: 'views/test.html',
-		controller:'DemoController'
+		templateUrl: 'views/main.html',
+		controller:'main'
 	})
 	.when('/proyectos',{
 		templateUrl: 'views/proyectos.html',
@@ -28,11 +28,7 @@ angular.module('iw3')
 		templateUrl: 'views/tablero.html',
 		controller:'tablero'
 	})
-	.when('/test',{
-		templateUrl: 'views/test.html',
-		controller:'DemoController'
-	})
-	
+		
 	.otherwise({
 		redirectTo: '/'
 	})
